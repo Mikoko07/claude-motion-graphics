@@ -253,7 +253,7 @@ body { width: 1080px; height: 1920px; overflow: hidden; background: var(--blue-9
   overflow: hidden;
   width: 86%;
   height: 104px;
-  margin: 20px auto 0;
+  margin: 51px auto 0; /* mismo espacio arriba (94%) y abajo (borde del tablero) */
   display: flex;
   align-items: center;
   justify-content: center;
