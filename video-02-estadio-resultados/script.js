@@ -15,6 +15,7 @@
     board: 3.0,         //      entra el tablero LED
     ticker: 4.8,        // 0:05 el ticker empieza a llenarse (se acelera)
     effect: 11.9,       // 0:12 94% de efectividad
+    score: 13.0,        // 0:13 mini marcador "ACI 3 - IELTS 0" (guiño visual)
     claim: 14.0,        // 0:14 "RESULTADOS REALES. NO PROMESAS."
     guarantee: 15.3,    // 0:15 garantía
     cta: 17.0,          // 0:17 CTA
@@ -195,6 +196,16 @@
       );
       tl.to("#effect-box", { scale: 1.05, duration: 0.12, yoyo: true, repeat: 1, ease: "power2.out" }, T.effect + 0.9);
       flash(T.effect + 0.9, 0.7);
+
+      /* ---------------- 0:13 · Mini marcador ACI 3 - IELTS 0 ---------------- */
+      // Entrada rápida (~0.45 s): la placa se enciende, barrido de luz y "score update" del 3
+      tl.fromTo("#score-plate", { opacity: 0, scaleX: 0.7 }, { opacity: 1, scaleX: 1, duration: 0.3, ease: "power3.out" }, T.score);
+      tl.fromTo("#sp-sweep", { x: -180, opacity: 1 }, { x: 820, opacity: 1, duration: 0.45, ease: "power2.inOut", immediateRender: false }, T.score + 0.05);
+      tl.to("#sp-sweep", { opacity: 0, duration: 0.1 }, T.score + 0.5);
+      tl.fromTo("#sp-aci", { rotationX: -90, opacity: 0 }, { rotationX: 0, opacity: 1, duration: 0.3, ease: "back.out(2)" }, T.score + 0.15);
+      tl.fromTo("#sp-ielts", { opacity: 0 }, { opacity: 1, duration: 0.25 }, T.score + 0.15);
+      tl.to("#score-plate", { scale: 1.04, duration: 0.12, yoyo: true, repeat: 1, ease: "power2.out" }, T.score + 0.45);
+      flash(T.score + 0.2, 0.35);
 
       /* ---------------- 0:14 - 0:17 · Claim + garantía ---------------- */
       tl.to(["#open-1", "#open-2"], { opacity: 0, y: -40, duration: 0.35, ease: "power2.in", stagger: 0.05 }, T.claim - 0.35);
