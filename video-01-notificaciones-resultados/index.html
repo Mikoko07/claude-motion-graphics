@@ -1,0 +1,246 @@
+<!doctype html>
+<!--
+  ============================================================================
+  ALIANZA COLOMBO INGLESA · VIDEO 1 (v2)
+  "Resultados reales. No promesas."  Celular que recibe resultados IELTS
+  Reel vertical 1080x1920 · 19 s · HTML + CSS + GSAP (composición HyperFrames)
+
+  Archivos:
+    index.html  -> estructura y TEXTOS editables (busca los comentarios "EDITAR")
+    styles.css  -> marca, layout, colores (variables en :root)
+    script.js   -> línea de tiempo GSAP y TIEMPOS editables (objeto T)
+
+  Assets (rutas editables):
+    assets/logos/logo-aci-blanco.png    -> imagotipo blanco oficial (obligatorio)
+    assets/logos/isotipo-aci-blanco.png -> isotipo (recorte del archivo oficial),
+                                           usado como ícono de la app en las notificaciones
+    assets/logos/logo-aci-color.png     -> reservado (no se usa sobre azul oscuro)
+    assets/fonts/Montserrat-*.woff2     -> Montserrat
+    vendor/gsap.min.js                  -> GSAP 3.14.2 local
+
+  Exportar:
+    npx hyperframes render --quality delivery --fps 30 --output export/aci-video-01.mp4
+  ============================================================================
+-->
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <title>ACI · Resultados reales. No promesas.</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script src="vendor/gsap.min.js"></script>
+  </head>
+  <body>
+    <!-- Duración total: data-duration (debe coincidir con T.end en script.js) -->
+    <div
+      id="root"
+      data-composition-id="aci-video-01"
+      data-start="0"
+      data-duration="19"
+      data-width="1080"
+      data-height="1920"
+    >
+      <!-- ==================== CAPA 0 · FONDO Y FORMAS DE MARCA ==================== -->
+      <div class="layer">
+        <div class="bg-fill"></div>
+        <div class="bg-glow" id="bg-glow"></div>
+        <div class="deco" id="deco">
+          <svg class="deco-arc" viewBox="0 0 520 420" aria-hidden="true">
+            <path class="draw" d="M500 30 C 380 40, 250 120, 170 230 S 60 380, 20 400" />
+            <path class="draw thin" d="M500 80 C 400 90, 290 160, 220 250 S 120 380, 80 410" />
+          </svg>
+          <div class="deco-lines deco-lines-left"><span></span><span></span><span></span></div>
+          <div class="deco-lines deco-lines-right"><span></span><span></span><span></span></div>
+          <svg class="deco-arc-bottom" viewBox="0 0 420 300" aria-hidden="true">
+            <path class="draw" d="M10 40 C 120 60, 220 140, 260 290" />
+          </svg>
+        </div>
+      </div>
+
+      <!-- ==================== CAPA 1 · FLUJO SECUNDARIO DE RESULTADOS ==================== -->
+      <!-- Notificaciones "fantasma" de otros estudiantes (solo nombre) que suben detrás
+           del celular para dar sensación de volumen. EDITAR nombres y puntajes. -->
+      <div class="layer">
+        <div class="ghost-lane ghost-left" data-layout-allow-overflow>
+          <div class="ghost-col" id="ghost-left">
+            <div class="ghost" data-layout-allow-overlap data-layout-allow-occlusion><b data-layout-allow-overlap data-layout-allow-occlusion>Daniel</b><span data-layout-allow-overlap data-layout-allow-occlusion>Overall 6.5</span></div>
+            <div class="ghost" data-layout-allow-overlap data-layout-allow-occlusion><b data-layout-allow-overlap data-layout-allow-occlusion>Laura</b><span data-layout-allow-overlap data-layout-allow-occlusion>Overall 7.5</span></div>
+            <div class="ghost" data-layout-allow-overlap data-layout-allow-occlusion><b data-layout-allow-overlap data-layout-allow-occlusion>Sergio</b><span data-layout-allow-overlap data-layout-allow-occlusion>Overall 7.0</span></div>
+            <div class="ghost" data-layout-allow-overlap data-layout-allow-occlusion><b data-layout-allow-overlap data-layout-allow-occlusion>Valentina</b><span data-layout-allow-overlap data-layout-allow-occlusion>Overall 6.5</span></div>
+            <div class="ghost" data-layout-allow-overlap data-layout-allow-occlusion><b data-layout-allow-overlap data-layout-allow-occlusion>Mateo</b><span data-layout-allow-overlap data-layout-allow-occlusion>Overall 7.0</span></div>
+            <div class="ghost" data-layout-allow-overlap data-layout-allow-occlusion><b data-layout-allow-overlap data-layout-allow-occlusion>Camila</b><span data-layout-allow-overlap data-layout-allow-occlusion>Overall 7.0</span></div>
+            <div class="ghost" data-layout-allow-overlap data-layout-allow-occlusion><b data-layout-allow-overlap data-layout-allow-occlusion>Andrés</b><span data-layout-allow-overlap data-layout-allow-occlusion>Overall 6.5</span></div>
+            <div class="ghost" data-layout-allow-overlap data-layout-allow-occlusion><b data-layout-allow-overlap data-layout-allow-occlusion>Sofía</b><span data-layout-allow-overlap data-layout-allow-occlusion>Overall 7.5</span></div>
+            <div class="ghost" data-layout-allow-overlap data-layout-allow-occlusion><b data-layout-allow-overlap data-layout-allow-occlusion>Juan</b><span data-layout-allow-overlap data-layout-allow-occlusion>Overall 7.0</span></div>
+            <div class="ghost" data-layout-allow-overlap data-layout-allow-occlusion><b data-layout-allow-overlap data-layout-allow-occlusion>Mariana</b><span data-layout-allow-overlap data-layout-allow-occlusion>Overall 7.0</span></div>
+          </div>
+        </div>
+        <div class="ghost-lane ghost-right" data-layout-allow-overflow>
+          <div class="ghost-col" id="ghost-right">
+            <div class="ghost" data-layout-allow-overlap data-layout-allow-occlusion><b data-layout-allow-overlap data-layout-allow-occlusion>Felipe</b><span data-layout-allow-overlap data-layout-allow-occlusion>Overall 6.5</span></div>
+            <div class="ghost" data-layout-allow-overlap data-layout-allow-occlusion><b data-layout-allow-overlap data-layout-allow-occlusion>Natalia</b><span data-layout-allow-overlap data-layout-allow-occlusion>Overall 7.5</span></div>
+            <div class="ghost" data-layout-allow-overlap data-layout-allow-occlusion><b data-layout-allow-overlap data-layout-allow-occlusion>Carlos</b><span data-layout-allow-overlap data-layout-allow-occlusion>Overall 7.0</span></div>
+            <div class="ghost" data-layout-allow-overlap data-layout-allow-occlusion><b data-layout-allow-overlap data-layout-allow-occlusion>Isabela</b><span data-layout-allow-overlap data-layout-allow-occlusion>Overall 7.0</span></div>
+            <div class="ghost" data-layout-allow-overlap data-layout-allow-occlusion><b data-layout-allow-overlap data-layout-allow-occlusion>Tomás</b><span data-layout-allow-overlap data-layout-allow-occlusion>Overall 6.5</span></div>
+            <div class="ghost" data-layout-allow-overlap data-layout-allow-occlusion><b data-layout-allow-overlap data-layout-allow-occlusion>Daniela</b><span data-layout-allow-overlap data-layout-allow-occlusion>Overall 7.5</span></div>
+            <div class="ghost" data-layout-allow-overlap data-layout-allow-occlusion><b data-layout-allow-overlap data-layout-allow-occlusion>Santiago</b><span data-layout-allow-overlap data-layout-allow-occlusion>Overall 7.0</span></div>
+            <div class="ghost" data-layout-allow-overlap data-layout-allow-occlusion><b data-layout-allow-overlap data-layout-allow-occlusion>Lucía</b><span data-layout-allow-overlap data-layout-allow-occlusion>Overall 6.5</span></div>
+            <div class="ghost" data-layout-allow-overlap data-layout-allow-occlusion><b data-layout-allow-overlap data-layout-allow-occlusion>Julián</b><span data-layout-allow-overlap data-layout-allow-occlusion>Overall 7.0</span></div>
+            <div class="ghost" data-layout-allow-overlap data-layout-allow-occlusion><b data-layout-allow-overlap data-layout-allow-occlusion>Paula</b><span data-layout-allow-overlap data-layout-allow-occlusion>Overall 7.5</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ==================== CAPA 2 · LOGO + TITULARES ==================== -->
+      <div class="layer">
+        <!-- EDITAR LOGO: reemplazar src por la versión oficial (SVG o PNG blanco). -->
+        <div class="logo-slot">
+          <img id="logo" class="logo" src="assets/logos/logo-aci-blanco.png" alt="Alianza Colombo Inglesa" />
+        </div>
+
+        <!-- EDITAR TITULAR DE APERTURA -->
+        <h1 class="headline" id="headline-open">
+          <span class="headline-line" id="open-1">No son palabras.</span>
+          <span class="headline-line" id="open-2">Son resultados.</span>
+        </h1>
+
+        <!-- EDITAR CLAIM PROTAGONISTA (reemplaza al titular de apertura) -->
+        <h2 class="claim" id="claim">
+          <span class="claim-line" id="claim-1">RESULTADOS REALES.</span>
+          <span class="claim-line claim-accent" id="claim-2">NO PROMESAS.</span>
+        </h2>
+      </div>
+
+      <!-- ==================== CAPA 3 · CELULAR + NOTIFICACIONES ==================== -->
+      <div class="layer">
+        <div class="phone-wrap">
+          <div class="phone-motion" id="phone-motion">
+            <div class="phone-buzz" id="phone-buzz">
+              <div class="phone">
+                <div class="phone-screen">
+                  <div class="screen-glow" data-layout-allow-overflow></div>
+                  <div class="island"></div>
+                  <div class="statusbar">
+                    <span>9:41</span>
+                    <span class="status-icons"><i></i><i></i><i></i></span>
+                  </div>
+                  <div class="home-bar"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- EDITAR NOTIFICACIONES: nombre (sin apellido), sección y puntaje.
+             Entran en este orden; la última (Overall Band) es el clímax. -->
+        <div class="stack" id="stack">
+          <article class="notif" id="n-1" data-layout-allow-overlap>
+            <div class="app-icon" role="img" aria-label="ACI"></div>
+            <div class="notif-body">
+              <p class="notif-head"><span>Nuevo resultado ACI</span><span>ahora</span></p>
+              <p class="notif-main"><b data-layout-allow-overlap data-layout-allow-occlusion>Paola</b><span class="sep">·</span><span class="section">Listening</span></p>
+            </div>
+            <span data-layout-allow-overlap class="notif-score">7.5</span>
+          </article>
+
+          <article class="notif" id="n-2" data-layout-allow-overlap>
+            <div class="app-icon" role="img" aria-label="ACI"></div>
+            <div class="notif-body">
+              <p class="notif-head"><span>Nuevo resultado ACI</span><span>ahora</span></p>
+              <p class="notif-main"><b data-layout-allow-overlap data-layout-allow-occlusion>Paola</b><span class="sep">·</span><span class="section">Reading</span></p>
+            </div>
+            <span data-layout-allow-overlap class="notif-score">7.0</span>
+          </article>
+
+          <article class="notif" id="n-3" data-layout-allow-overlap>
+            <div class="app-icon" role="img" aria-label="ACI"></div>
+            <div class="notif-body">
+              <p class="notif-head"><span>Nuevo resultado ACI</span><span>ahora</span></p>
+              <p class="notif-main"><b data-layout-allow-overlap data-layout-allow-occlusion>Paola</b><span class="sep">·</span><span class="section">Writing</span></p>
+            </div>
+            <span data-layout-allow-overlap class="notif-score">7.0</span>
+          </article>
+
+          <article class="notif" id="n-4" data-layout-allow-overlap>
+            <div class="app-icon" role="img" aria-label="ACI"></div>
+            <div class="notif-body">
+              <p class="notif-head"><span>Nuevo resultado ACI</span><span>ahora</span></p>
+              <p class="notif-main"><b data-layout-allow-overlap data-layout-allow-occlusion>Paola</b><span class="sep">·</span><span class="section">Speaking</span></p>
+            </div>
+            <span data-layout-allow-overlap class="notif-score">7.0</span>
+          </article>
+
+          <!-- Clímax: Overall Band -->
+          <article class="notif notif-overall" id="n-5" data-layout-allow-overlap>
+            <div class="overall-ring" id="overall-ring"></div>
+            <div class="app-icon" role="img" aria-label="ACI"></div>
+            <div class="notif-body">
+              <p class="notif-head"><span>Nuevo resultado ACI</span><span>ahora</span></p>
+              <p class="notif-main"><b data-layout-allow-overlap data-layout-allow-occlusion>Paola</b></p>
+              <p class="overall-label">Overall Band</p>
+            </div>
+            <span data-layout-allow-overlap class="notif-score overall-score" id="overall-score">7.0</span>
+          </article>
+        </div>
+      </div>
+
+      <!-- ==================== CAPA 4 · DIFERENCIALES + CTA ==================== -->
+      <div class="layer">
+        <!-- EDITAR DIFERENCIALES -->
+        <div class="stats">
+          <div class="stat" id="stat-1">
+            <span class="stat-num">94%</span>
+            <span class="stat-label">de efectividad</span>
+          </div>
+          <div class="stat" id="stat-2">
+            <span class="stat-num">+2.000</span>
+            <span class="stat-label">estudiantes certificados</span>
+          </div>
+        </div>
+        <div class="pills">
+          <div class="pill" id="pill-1">
+            <svg viewBox="0 0 40 40" aria-hidden="true">
+              <path class="p-stroke" d="M20 4 L34 9 V19 C34 28 28 34 20 37 C12 34 6 28 6 19 V9 Z" />
+              <path class="p-sky" d="M13 20 L18 25 L27 15" />
+            </svg>
+            <span><b data-layout-allow-overlap data-layout-allow-occlusion>Garantía:</b> si no pasas, repites gratis</span>
+          </div>
+          <div class="pill" id="pill-2">
+            <svg viewBox="0 0 40 40" aria-hidden="true">
+              <circle class="p-stroke" cx="20" cy="14" r="7" />
+              <path class="p-stroke" d="M7 36 C7 28 13 23 20 23 S33 28 33 36" />
+              <path class="p-sky" d="M29 6 L34 11" />
+            </svg>
+            <span>Tutor personalizado</span>
+          </div>
+        </div>
+
+        <!-- EDITAR CTA -->
+        <div class="cta-slot">
+          <div class="cta-ring" id="cta-ring"></div>
+          <div class="cta" id="cta">
+            <span class="cta-text">Analicemos tu caso</span>
+            <svg class="cta-arrow" id="cta-arrow" viewBox="0 0 48 32" aria-hidden="true">
+              <path d="M4 16 H40 M28 5 L41 16 L28 27" />
+            </svg>
+          </div>
+        </div>
+      </div>
+
+      <!-- Destello sutil del clímax -->
+      <div class="flash" id="flash"></div>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+      // Construye la timeline definida en script.js y la registra en HyperFrames.
+      // Si se abre index.html directamente en el navegador, se reproduce sola.
+      const tl = window.ACI1.build();
+      if (window.__timelines) {
+        window.__timelines["aci-video-01"] = tl;
+      } else {
+        window.ACI1.playStandalone(tl);
+      }
+    </script>
+  </body>
+</html>

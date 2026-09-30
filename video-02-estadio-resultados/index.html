@@ -1,0 +1,183 @@
+<!doctype html>
+<!--
+  ============================================================================
+  ALIANZA COLOMBO INGLESA · VIDEO 2 (v2)
+  Estadio / tablero LED: volumen de resultados reales
+  Reel vertical 1080x1920 · 19.5 s · HTML + CSS + GSAP (composición HyperFrames)
+
+  Archivos:
+    index.html  -> estructura y TEXTOS editables (busca los comentarios "EDITAR")
+    styles.css  -> marca, layout, colores (variables en :root)
+    script.js   -> línea de tiempo GSAP, TIEMPOS (objeto T) e hitos del contador (COUNTER)
+
+  Assets (rutas editables):
+    assets/logos/logo-aci-blanco.png    -> imagotipo blanco oficial (obligatorio)
+    assets/logos/isotipo-aci-blanco.png -> isotipo (recorte del archivo oficial)
+    assets/logos/logo-aci-color.png     -> reservado (no se usa sobre azul oscuro)
+    assets/fonts/Montserrat-*.woff2     -> Montserrat
+    vendor/gsap.min.js                  -> GSAP 3.14.2 local
+
+  Exportar:
+    npx hyperframes render --quality delivery --fps 30 --output export/aci-video-02.mp4
+  ============================================================================
+-->
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <title>ACI · Resultados que sí se ven</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script src="vendor/gsap.min.js"></script>
+  </head>
+  <body>
+    <!-- Duración total: data-duration (debe coincidir con T.end en script.js) -->
+    <div
+      id="root"
+      data-composition-id="aci-video-02"
+      data-start="0"
+      data-duration="19.5"
+      data-width="1080"
+      data-height="1920"
+    >
+      <!-- ==================== CAPA 0 · ESTADIO NOCTURNO ==================== -->
+      <div class="layer">
+        <div class="bg-fill"></div>
+        <div class="bg-vignette"></div>
+        <div class="beam beam-l1" id="beam-l1"></div>
+        <div class="beam beam-l2" id="beam-l2"></div>
+        <div class="beam beam-r1" id="beam-r1"></div>
+        <div class="beam beam-r2" id="beam-r2"></div>
+        <div class="rig rig-left"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+        <div class="rig rig-right"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+        <div class="diag diag-left"><span class="diag-red"></span><span class="diag-sky"></span></div>
+        <div class="diag diag-right"><span class="diag-sky"></span><span class="diag-red"></span></div>
+        <div class="field-lines" id="field-lines" data-layout-allow-overflow><span></span><span></span></div>
+      </div>
+
+      <div class="flash" id="flash"></div>
+
+      <!-- ==================== CÁMARA (movimiento sutil) ==================== -->
+      <div class="cam" id="cam-drift">
+        <div class="cam" id="cam-punch">
+          <!-- EDITAR LOGO: reemplazar src por la versión oficial (SVG o PNG blanco). -->
+          <div class="logo-slot">
+            <img id="logo" class="logo" src="assets/logos/logo-aci-blanco.png" alt="Alianza Colombo Inglesa" />
+          </div>
+
+          <!-- EDITAR TITULAR DE APERTURA -->
+          <h1 class="headline" id="headline-open">
+            <span class="headline-line" id="open-1">Resultados que</span>
+            <span class="headline-line" id="open-2">sí se ven.</span>
+          </h1>
+
+          <!-- EDITAR CLAIM PROTAGONISTA (reemplaza al titular de apertura) -->
+          <h2 class="claim" id="claim">
+            <span class="claim-line" id="claim-1">RESULTADOS REALES.</span>
+            <span class="claim-line claim-accent" id="claim-2">NO PROMESAS.</span>
+          </h2>
+
+          <!-- ==================== TABLERO LED ==================== -->
+          <div class="board-slot">
+            <div class="board" id="board">
+              <div class="board-texture"></div>
+
+              <div class="board-head">
+                <span class="board-title">
+                  <img class="board-iso" src="assets/logos/isotipo-aci-blanco.png" alt="" />
+                  Marcador ACI
+                </span>
+                <span class="board-tag">IELTS</span>
+              </div>
+
+              <!-- Contador principal (los hitos se editan en script.js · COUNTER) -->
+              <div class="counter-block">
+                <!-- EDITAR etiqueta del contador -->
+                <p class="block-label" id="count-label">Estudiantes certificados</p>
+                <div class="led-box counter-box" id="counter-box">
+                  <span class="led-glow" id="count-glow" aria-hidden="true" data-layout-allow-overlap data-layout-allow-occlusion>0</span>
+                  <span class="led-num" id="count" data-layout-allow-overlap data-layout-allow-occlusion>0</span>
+                  <span class="led-mask"></span>
+                </div>
+              </div>
+
+              <div class="board-divider"></div>
+
+              <!-- Zona inferior: primero el ticker de resultados, luego el 94% -->
+              <div class="lower-block">
+                <div class="ticker" id="ticker">
+                  <p class="block-label">Últimos resultados IELTS</p>
+                  <div class="ticker-window" data-layout-allow-overflow>
+                    <div class="ticker-lane"></div>
+                    <!-- Las filas se generan desde script.js (EDITAR arreglo NAMES: solo nombre, sin apellido) -->
+                    <div class="ticker-slots" id="ticker-slots"></div>
+                  </div>
+                </div>
+
+                <div class="effect" id="effect">
+                  <!-- EDITAR etiqueta y valor de efectividad (valor final en script.js · EFFECT) -->
+                  <p class="block-label">De efectividad</p>
+                  <div class="led-box effect-box" id="effect-box">
+                    <span class="led-glow" id="effect-glow" aria-hidden="true" data-layout-allow-overlap data-layout-allow-occlusion>94%</span>
+                    <span class="led-num" id="effect-num" data-layout-allow-overlap data-layout-allow-occlusion>94%</span>
+                    <span class="led-mask"></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ==================== CINTA LED (nombres en movimiento) ==================== -->
+          <!-- EDITAR: nombres de la cinta (se repite dos veces para un recorrido continuo) -->
+          <div class="ribbon" id="ribbon" data-layout-allow-overflow>
+            <div class="ribbon-track" id="ribbon-track">
+              <span>Paola <em>7.0</em></span><span>Daniel <em>6.5</em></span><span>Laura <em>7.5</em></span>
+              <span>Sergio <em>7.0</em></span><span>Valentina <em>6.5</em></span><span>Mateo <em>7.0</em></span>
+              <span>Camila <em>7.0</em></span><span>Andrés <em>6.5</em></span><span>Sofía <em>7.5</em></span>
+              <span>Juan <em>7.0</em></span><span>Mariana <em>7.0</em></span><span>Felipe <em>6.5</em></span>
+              <span>Paola <em>7.0</em></span><span>Daniel <em>6.5</em></span><span>Laura <em>7.5</em></span>
+              <span>Sergio <em>7.0</em></span><span>Valentina <em>6.5</em></span><span>Mateo <em>7.0</em></span>
+              <span>Camila <em>7.0</em></span><span>Andrés <em>6.5</em></span><span>Sofía <em>7.5</em></span>
+              <span>Juan <em>7.0</em></span><span>Mariana <em>7.0</em></span><span>Felipe <em>6.5</em></span>
+            </div>
+          </div>
+
+          <!-- ==================== GARANTÍA ==================== -->
+          <!-- EDITAR GARANTÍA -->
+          <div class="guarantee-slot">
+            <div class="guarantee" id="guarantee">
+              <svg class="g-icon" viewBox="0 0 40 40" aria-hidden="true">
+                <path class="g-stroke" d="M20 4 L34 9 V19 C34 28 28 34 20 37 C12 34 6 28 6 19 V9 Z" />
+                <path class="g-sky" d="M13 20 L18 25 L27 15" />
+              </svg>
+              <span><b>Garantía:</b> si no pasas el examen, repites gratis.</span>
+            </div>
+          </div>
+
+          <!-- ==================== CTA ==================== -->
+          <!-- EDITAR CTA -->
+          <div class="cta-slot">
+            <div class="cta-ring" id="cta-ring"></div>
+            <div class="cta" id="cta">
+              <span class="cta-text">Analicemos tu caso</span>
+              <svg class="cta-arrow" id="cta-arrow" viewBox="0 0 48 32" aria-hidden="true">
+                <path d="M4 16 H40 M28 5 L41 16 L28 27" />
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+      // Construye la timeline definida en script.js y la registra en HyperFrames.
+      // Si se abre index.html directamente en el navegador, se reproduce sola.
+      const tl = window.ACI2.build();
+      if (window.__timelines) {
+        window.__timelines["aci-video-02"] = tl;
+      } else {
+        window.ACI2.playStandalone(tl);
+      }
+    </script>
+  </body>
+</html>

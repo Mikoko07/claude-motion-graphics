@@ -1,0 +1,340 @@
+/* ============================================================================
+   ACI · VIDEO 1 (v2) · "Resultados reales. No promesas."
+   Estilos de marca y layout 1080x1920.
+   - Colores y medidas clave en :root (EDITAR aquí).
+   - Estados finales en CSS; GSAP (script.js) anima desde/hacia ellos.
+   ============================================================================ */
+
+@font-face { font-family: "Montserrat"; src: url("assets/fonts/Montserrat-500.woff2") format("woff2"); font-weight: 500; font-style: normal; font-display: block; }
+@font-face { font-family: "Montserrat"; src: url("assets/fonts/Montserrat-600.woff2") format("woff2"); font-weight: 600; font-style: normal; font-display: block; }
+@font-face { font-family: "Montserrat"; src: url("assets/fonts/Montserrat-700.woff2") format("woff2"); font-weight: 700; font-style: normal; font-display: block; }
+@font-face { font-family: "Montserrat"; src: url("assets/fonts/Montserrat-800.woff2") format("woff2"); font-weight: 800; font-style: normal; font-display: block; }
+@font-face { font-family: "Montserrat"; src: url("assets/fonts/Montserrat-900.woff2") format("woff2"); font-weight: 900; font-style: normal; font-display: block; }
+
+:root {
+  --blue-900: #0a396d;   /* Blue 900 · fondo */
+  --sky-900: #38d7fc;    /* Blue Sky 900 · acentos */
+  --red-900: #c63030;    /* Red 900 · puntajes y CTA */
+  --white: #ffffff;
+  --gray-100: #e9eef4;   /* gris claro de apoyo */
+  --gray-300: #b9c6d6;
+  --gray-500: #5f6e80;   /* metadatos de notificación */
+
+  --logo-top: 84px;
+  --logo-width: 400px;
+  --headline-top: 222px;
+  --phone-top: 468px;
+  --phone-w: 450px;
+  --phone-h: 880px;
+  --stack-top: 572px;
+  --notif-w: 700px;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html,
+body { width: 1080px; height: 1920px; overflow: hidden; background: var(--blue-900); }
+
+#root {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  font-family: "Montserrat", sans-serif;
+  color: var(--white);
+  -webkit-font-smoothing: antialiased;
+}
+
+.layer { position: absolute; inset: 0; }
+
+/* ============================ FONDO ============================ */
+.bg-fill { position: absolute; inset: 0; background: var(--blue-900); }
+.bg-glow {
+  position: absolute;
+  left: 40px;
+  top: 460px;
+  width: 1000px;
+  height: 960px;
+  border-radius: 50%;
+  background: radial-gradient(closest-side, rgba(56, 215, 252, 0.2), rgba(56, 215, 252, 0.05) 60%, rgba(56, 215, 252, 0) 100%);
+}
+.deco { position: absolute; inset: 0; }
+.deco svg path.draw { fill: none; stroke: var(--sky-900); stroke-width: 4; stroke-linecap: round; opacity: 0.35; }
+.deco svg path.draw.thin { stroke-width: 2; opacity: 0.22; }
+.deco-arc { position: absolute; right: -130px; top: -90px; width: 440px; height: 300px; }
+.deco-arc-bottom { position: absolute; left: -90px; top: 1700px; width: 320px; height: 240px; }
+.deco-lines { position: absolute; display: flex; flex-direction: column; gap: 14px; }
+.deco-lines span { display: block; height: 4px; border-radius: 4px; background: rgba(56, 215, 252, 0.4); }
+.deco-lines-left { left: 56px; top: 150px; width: 90px; }
+.deco-lines-left span:nth-child(1) { width: 90px; }
+.deco-lines-left span:nth-child(2) { width: 60px; }
+.deco-lines-left span:nth-child(3) { width: 36px; }
+.deco-lines-right { right: 56px; top: 1760px; width: 90px; align-items: flex-end; }
+.deco-lines-right span:nth-child(1) { width: 36px; }
+.deco-lines-right span:nth-child(2) { width: 60px; }
+.deco-lines-right span:nth-child(3) { width: 90px; }
+
+/* ============================ FLUJO SECUNDARIO ============================ */
+.ghost-lane {
+  position: absolute;
+  top: 470px;
+  width: 260px;
+  height: 880px;
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(180deg, transparent 0%, #000 18%, #000 82%, transparent 100%);
+  mask-image: linear-gradient(180deg, transparent 0%, #000 18%, #000 82%, transparent 100%);
+}
+.ghost-left { left: 0; }
+.ghost-right { right: 0; }
+.ghost-col { display: flex; flex-direction: column; gap: 18px; }
+.ghost-left .ghost-col { padding-left: 18px; }
+.ghost-right .ghost-col { padding-left: 22px; }
+.ghost {
+  width: 220px;
+  height: 96px;
+  padding: 0 22px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 4px;
+  border-radius: 22px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 2px solid rgba(56, 215, 252, 0.32);
+}
+.ghost b { font-weight: 700; font-size: 24px; line-height: 1.15; color: var(--white); }
+.ghost span { font-weight: 700; font-size: 20px; line-height: 1.15; color: var(--sky-900); }
+
+/* ============================ LOGO + TITULARES ============================ */
+.logo-slot { position: absolute; top: var(--logo-top); left: 0; right: 0; display: flex; justify-content: center; }
+.logo { display: block; width: var(--logo-width); height: auto; }
+
+.headline,
+.claim {
+  position: absolute;
+  top: var(--headline-top);
+  left: 40px;
+  right: 40px;
+  text-align: center;
+  font-weight: 800;
+  color: var(--white);
+}
+.headline { font-size: 86px; line-height: 1.08; letter-spacing: -0.02em; }
+.headline-line,
+.claim-line { display: block; }
+.claim { font-weight: 900; font-size: 76px; line-height: 1.12; letter-spacing: -0.01em; }
+.claim-accent { color: var(--sky-900); }
+
+/* ============================ CELULAR ============================ */
+.phone-wrap {
+  position: absolute;
+  top: var(--phone-top);
+  left: calc(50% - var(--phone-w) / 2);
+  width: var(--phone-w);
+  height: var(--phone-h);
+}
+.phone-motion,
+.phone-buzz { width: 100%; height: 100%; }
+.phone {
+  width: 100%;
+  height: 100%;
+  padding: 14px;
+  border-radius: 66px;
+  background: linear-gradient(150deg, var(--white) 0%, var(--gray-100) 45%, var(--gray-300) 100%);
+  box-shadow: 0 50px 90px rgba(2, 16, 36, 0.5), 0 10px 24px rgba(2, 16, 36, 0.3), inset 0 0 0 2px rgba(255, 255, 255, 0.7);
+}
+.phone-screen {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 54px;
+  overflow: hidden;
+  background: linear-gradient(180deg, #0c4580 0%, var(--blue-900) 65%);
+}
+.screen-glow {
+  position: absolute;
+  inset: -20% -30% auto -30%;
+  height: 70%;
+  background: radial-gradient(closest-side, rgba(56, 215, 252, 0.16), rgba(56, 215, 252, 0));
+}
+.island { position: absolute; top: 18px; left: calc(50% - 62px); width: 124px; height: 36px; border-radius: 20px; background: #06264a; }
+.statusbar {
+  position: absolute;
+  top: 22px;
+  left: 38px;
+  right: 34px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 700;
+  font-size: 21px;
+}
+.status-icons { display: flex; gap: 5px; align-items: flex-end; }
+.status-icons i { display: block; width: 6px; background: var(--white); border-radius: 2px; }
+.status-icons i:nth-child(1) { height: 8px; }
+.status-icons i:nth-child(2) { height: 12px; }
+.status-icons i:nth-child(3) { height: 16px; }
+.home-bar { position: absolute; bottom: 14px; left: calc(50% - 70px); width: 140px; height: 6px; border-radius: 6px; background: rgba(255, 255, 255, 0.7); }
+
+/* ============================ NOTIFICACIONES ============================ */
+.stack {
+  position: absolute;
+  top: var(--stack-top);
+  left: calc(50% - var(--notif-w) / 2);
+  width: var(--notif-w);
+  height: 760px;
+}
+.notif {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 128px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 0 32px 0 22px;
+  border-radius: 32px;
+  background: var(--white);
+  box-shadow: 0 22px 44px rgba(2, 16, 36, 0.35), 0 6px 14px rgba(2, 16, 36, 0.18);
+}
+.app-icon {
+  flex: 0 0 auto;
+  width: 76px;
+  height: 76px;
+  border-radius: 20px;
+  background: var(--blue-900);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+/* Ícono de la app = isotipo oficial (EDITAR ruta si cambia el asset) */
+.app-icon::after {
+  content: "";
+  width: 52px;
+  height: 31px;
+  background: url("assets/logos/isotipo-aci-blanco.png") center / contain no-repeat;
+}
+.notif-body { flex: 1 1 auto; min-width: 0; }
+.notif-head {
+  display: flex;
+  justify-content: space-between;
+  font-weight: 700;
+  font-size: 19px;
+  line-height: 1.2;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--gray-500);
+}
+.notif-head span:last-child { text-transform: none; letter-spacing: 0.02em; font-weight: 600; }
+.notif-main { margin-top: 6px; display: flex; align-items: baseline; gap: 10px; white-space: nowrap; color: var(--blue-900); }
+.notif-main b { font-weight: 800; font-size: 36px; line-height: 1.15; }
+.notif-main .sep { font-weight: 700; font-size: 28px; color: var(--gray-500); }
+.notif-main .section { font-weight: 600; font-size: 34px; line-height: 1.15; }
+.notif-score {
+  flex: 0 0 auto;
+  min-width: 116px;
+  text-align: right;
+  font-weight: 900;
+  font-size: 66px;
+  line-height: 1;
+  color: var(--red-900);
+}
+
+/* Clímax: Overall Band */
+.notif-overall { height: 186px; border: 4px solid var(--red-900); padding-right: 30px; }
+.notif-overall .app-icon { width: 88px; height: 88px; border-radius: 24px; }
+.notif-overall .app-icon::after { width: 60px; height: 35px; }
+.overall-label {
+  margin-top: 4px;
+  font-weight: 900;
+  font-size: 33px;
+  line-height: 1.15;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--red-900);
+}
+.overall-score { font-size: 108px; min-width: 170px; }
+.overall-ring {
+  position: absolute;
+  inset: -14px;
+  border-radius: 42px;
+  border: 4px solid var(--sky-900);
+  opacity: 0;
+}
+
+/* ============================ DIFERENCIALES ============================ */
+.stats {
+  position: absolute;
+  top: 1394px;
+  left: 60px;
+  right: 60px;
+  display: flex;
+  gap: 24px;
+}
+.stat {
+  flex: 1 1 0;
+  height: 126px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 28px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 2px solid rgba(56, 215, 252, 0.55);
+}
+.stat-num { font-weight: 900; font-size: 60px; line-height: 1; color: var(--white); letter-spacing: -0.01em; }
+.stat-label { margin-top: 8px; font-weight: 600; font-size: 24px; line-height: 1.2; color: var(--gray-100); }
+
+.pills {
+  position: absolute;
+  top: 1542px;
+  left: 40px;
+  right: 40px;
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+}
+.pill {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 13px 22px 13px 16px;
+  border-radius: 999px;
+  border: 2px solid rgba(56, 215, 252, 0.45);
+  background: rgba(2, 16, 36, 0.25);
+  font-weight: 600;
+  font-size: 23px;
+  line-height: 1.2;
+  white-space: nowrap;
+  color: var(--white);
+}
+.pill b { font-weight: 800; color: var(--sky-900); }
+.pill svg { display: block; width: 32px; height: 32px; overflow: visible; }
+.pill .p-stroke { fill: none; stroke: var(--white); stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
+.pill .p-sky { fill: none; stroke: var(--sky-900); stroke-width: 3.5; stroke-linecap: round; stroke-linejoin: round; }
+
+/* ============================ CTA ============================ */
+.cta-slot { position: absolute; top: 1638px; left: calc(50% - 330px); width: 660px; height: 108px; }
+.cta {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 22px;
+  border-radius: 999px;
+  background: var(--red-900);
+  box-shadow: 0 20px 40px rgba(2, 16, 36, 0.4);
+}
+.cta-text { font-weight: 800; font-size: 42px; color: var(--white); letter-spacing: -0.01em; }
+.cta-arrow { display: block; width: 48px; height: 32px; overflow: visible; }
+.cta-arrow path { fill: none; stroke: var(--white); stroke-width: 5; stroke-linecap: round; stroke-linejoin: round; }
+.cta-ring { position: absolute; inset: 0; border-radius: 999px; border: 4px solid var(--red-900); opacity: 0; }
+
+.flash {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  background: radial-gradient(ellipse 80% 45% at 50% 45%, rgba(56, 215, 252, 0.3), rgba(56, 215, 252, 0) 70%);
+}
