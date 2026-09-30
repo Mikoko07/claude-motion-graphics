@@ -1,0 +1,7 @@
+# Skills de HyperFrames instalados con `npx skills add heygen-com/hyperframes --full-depth`
+# (se restauran desde skills-lock.json; no se versionan por tamaño)
+.agents/
+.claude/skills/
+node_modules/
+snapshots/
+**/.hyperframes/
