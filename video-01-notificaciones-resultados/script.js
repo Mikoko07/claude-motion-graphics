@@ -10,19 +10,22 @@
 
 (function () {
   const T = {
-    deco: 0.1,       // 0:00 formas de marca
-    logo: 0.4,       //      logo
-    open: 0.9,       //      "No son palabras. / Son resultados."
-    phone: 2.2,      // 0:02 entra el celular
-    ghosts: 3.4,     // 0:03 flujo secundario de resultados (volumen)
-    // 0:04 - 0:11 notificaciones de Paola (el ritmo se acelera; la última es el Overall)
-    notifs: [4.3, 5.5, 6.55, 7.5, 8.9],
-    overallHit: 9.5, //      énfasis del Overall Band
-    claim: 11.1,     // 0:11 "RESULTADOS REALES. NO PROMESAS."
-    stats: 13.6,     // 0:14 94% · +2.000
-    pills: 14.4,     //      garantía · tutor
-    cta: 16.4,       // 0:17 CTA
-    end: 19.0,       // duración total (= data-duration)
+    hook: 0.0,       // 0:00 hook grande "ANTES DE PRESENTAR IELTS, TOEFL O PTE, MIRA ESTO." (visible desde el fotograma 0)
+    hookOut: 1.95,   // 0:02 el hook se reduce y pasa a antetítulo
+    deco: 0.1,       //      formas de marca
+    logo: 0.3,       //      logo
+    open: 2.25,      // 0:02 "No son palabras. / Son resultados." (con antetítulo encima)
+    phone: 2.6,      //      entra el celular
+    stats: 3.2,      // 0:03 94% · +2.000 (fijos bajo el celular hasta el final)
+    pills: 3.6,      //      garantía · tutor (fijos)
+    ghosts: 3.9,     // 0:04 flujo secundario de resultados (volumen)
+    // 0:05 - 0:11 notificaciones de Paola (el ritmo se acelera; la última es el Overall)
+    notifs: [4.8, 6.0, 7.05, 8.0, 9.4],
+    overallHit: 10.0, //     énfasis del Overall Band
+    claim: 11.6,     // 0:12 "RESULTADOS REALES. NO PROMESAS." (reemplaza titular y antetítulo)
+    statsPulse: 14.1,// 0:14 pulso de refuerzo de las cifras
+    cta: 16.9,       // 0:17 CTA
+    end: 19.5,       // duración total (= data-duration)
   };
 
   const NOTIF_H = [128, 128, 128, 128, 186]; // alto de cada notificación (px)
@@ -51,6 +54,16 @@
       });
       tl.fromTo(".deco-lines span", { scaleX: 0, transformOrigin: "left center" }, { scaleX: 1, duration: 0.6, stagger: 0.06 }, T.deco + 0.3);
       tl.fromTo("#logo", { opacity: 0, y: -16 }, { opacity: 1, y: 0, duration: 0.8, ease: "power2.out" }, T.logo);
+      /* ---------------- 0:00 - 0:02 · Hook ---------------- */
+      // Línea 1 visible desde el fotograma 0 (solo asienta su escala); luego entran 2 y 3 con golpe
+      tl.fromTo("#hook-1", { scale: 1.05 }, { scale: 1, duration: 0.35, ease: "power3.out" }, T.hook);
+      tl.fromTo("#hook-2", { opacity: 0, scale: 1.25 }, { opacity: 1, scale: 1, duration: 0.3, ease: "power3.out" }, T.hook + 0.25);
+      tl.fromTo("#hook-3", { opacity: 0, scale: 0.6 }, { opacity: 1, scale: 1, duration: 0.4, ease: "back.out(2.2)" }, T.hook + 0.55);
+      tl.to("#hook-3", { scale: 1.07, duration: 0.14, yoyo: true, repeat: 1, ease: "power2.out" }, T.hook + 1.2);
+      // Salida: se encoge hacia arriba (hacia el antetítulo) y se desvanece
+      tl.to("#hook", { opacity: 0, scale: 0.35, y: -470, duration: 0.45, ease: "power3.in" }, T.hookOut);
+      tl.fromTo("#kicker", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.35, ease: "power2.out" }, T.hookOut + 0.3);
+
       tl.fromTo("#open-1", { opacity: 0, y: 70 }, { opacity: 1, y: 0, duration: 0.6, ease: "back.out(1.7)" }, T.open);
       tl.fromTo("#open-2", { opacity: 0, y: 70 }, { opacity: 1, y: 0, duration: 0.6, ease: "back.out(1.7)" }, T.open + 0.35);
 
@@ -88,14 +101,14 @@
       tl.to("#phone-buzz", { x: 7, duration: 0.04, yoyo: true, repeat: 9, ease: "sine.inOut" }, T.overallHit);
 
       /* ---------------- 0:11 - 0:14 · Claim protagonista ---------------- */
-      tl.to(["#open-1", "#open-2"], { opacity: 0, y: -40, duration: 0.35, ease: "power2.in", stagger: 0.05 }, T.claim - 0.35);
+      tl.to(["#kicker", "#open-1", "#open-2"], { opacity: 0, y: -40, duration: 0.35, ease: "power2.in", stagger: 0.05 }, T.claim - 0.35);
       tl.fromTo("#claim-1", { opacity: 0, y: 60, scale: 0.9 }, { opacity: 1, y: 0, scale: 1, duration: 0.55, ease: "back.out(1.8)" }, T.claim);
       tl.fromTo("#claim-2", { opacity: 0, y: 60, scale: 0.9 }, { opacity: 1, y: 0, scale: 1, duration: 0.55, ease: "back.out(1.8)" }, T.claim + 0.25);
       tl.to("#claim-2", { scale: 1.06, duration: 0.18, yoyo: true, repeat: 1, ease: "sine.inOut" }, T.claim + 1.1);
       // El flujo secundario se atenúa para no competir con el cierre
       tl.to(".ghost-lane", { opacity: 0.55, duration: 0.8 }, T.claim);
 
-      /* ---------------- 0:14 - 0:17 · Diferenciales ---------------- */
+      /* ---------------- 0:03 · Diferenciales fijos bajo el celular ---------------- */
       [
         { id: "#stat-1", to: 94, fmt: (v) => Math.round(v) + "%" },
         { id: "#stat-2", to: 2000, fmt: (v) => "+" + fmtMiles(Math.round(v)) },
@@ -107,6 +120,8 @@
         tl.fromTo(c, { v: 0 }, { v: s.to, duration: 0.9, ease: "power2.out", onUpdate: () => { num.textContent = s.fmt(c.v); } }, t + 0.1);
       });
       tl.fromTo(".pill", { opacity: 0, y: 26 }, { opacity: 1, y: 0, duration: 0.45, stagger: 0.18 }, T.pills);
+      // Pulso de refuerzo de las cifras (ya visibles desde el inicio)
+      tl.to([".stat", ".pill"], { scale: 1.05, duration: 0.18, yoyo: true, repeat: 1, ease: "sine.inOut", stagger: 0.12 }, T.statsPulse);
       $$(".pill .p-stroke, .pill .p-sky").forEach((p, i) => {
         const len = prepDraw(p);
         tl.fromTo(p, { strokeDashoffset: len }, { strokeDashoffset: 0, duration: 0.5, ease: "power2.out" }, T.pills + 0.1 + Math.floor(i / 2) * 0.18);
