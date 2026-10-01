@@ -122,6 +122,22 @@ body { width: 1080px; height: 1920px; overflow: hidden; background: var(--blue-9
 .claim { position: absolute; top: var(--headline-top); left: 40px; right: 40px; text-align: center; color: var(--white); }
 .headline { font-weight: 900; font-size: 70px; line-height: 1.06; letter-spacing: -0.01em; }
 .headline-accent { color: var(--sky-900); }
+/* Pregunta: dos líneas un poco más abajo para dejar sitio a la línea de exámenes */
+.headline-ask { top: 238px; font-size: 72px; }
+/* Línea de exámenes: grande al aparecer, luego se reduce sobre la pregunta (script.js) */
+.exams-tag {
+  position: absolute;
+  top: 258px;
+  left: 0;
+  right: 0;
+  text-align: center;
+  font-weight: 900;
+  font-size: 66px;
+  line-height: 1.1;
+  letter-spacing: 0.06em;
+  color: var(--sky-900);
+}
+.dotsep { color: var(--white); }
 .claim { top: 214px; }
 .claim { font-weight: 900; font-size: 76px; line-height: 1.1; letter-spacing: -0.01em; }
 .headline-line,

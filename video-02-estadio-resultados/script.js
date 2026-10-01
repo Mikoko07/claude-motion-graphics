@@ -11,7 +11,9 @@
   const T = {
     lights: 0.1,        // 0:00 barrido de luces
     logo: 0.5,          //      logo
-    open: 0.3,          // 0:00 "EL PUNTAJE NO SE IMPROVISA. SE PREPARA." (barrido LED)
+    open: 0.3,          // 0:00 "SABER INGLÉS / NO TE GARANTIZA / EL PUNTAJE." (barrido LED)
+    exams: 3.3,         // 0:03 "IELTS · TOEFL · PTE"
+    ask: 4.7,           // 0:05 "¿NECESITAS SUBIR TU PUNTAJE?" (se queda hasta el claim)
     board: 3.0,         //      entra el tablero LED
     ticker: 4.8,        // 0:05 el ticker empieza a llenarse (se acelera)
     effect: 11.9,       // 0:12 94% de efectividad
@@ -105,6 +107,25 @@
       });
       tl.to("#open-3", { scale: 1.08, duration: 0.16, yoyo: true, repeat: 1, ease: "power2.out" }, T.open + 1.25);
       flash(T.open + 1.25, 0.4);
+      // Sale el hook
+      tl.to(["#open-1", "#open-2", "#open-3"], { opacity: 0, y: -30, duration: 0.25, ease: "power2.in", stagger: 0.04 }, T.exams - 0.35);
+
+      /* ---------------- 0:03 · IELTS · TOEFL · PTE ---------------- */
+      tl.fromTo("#exams-tag", { clipPath: "inset(0% 100% 0% 0%)", opacity: 1, scale: 1, y: 0 }, { clipPath: "inset(0% 0% 0% 0%)", duration: 0.35, ease: "power2.out" }, T.exams);
+      tl.to("#exams-tag", { opacity: 0.45, duration: 0.04, ease: "none" }, T.exams + 0.38);
+      tl.to("#exams-tag", { opacity: 1, duration: 0.04, ease: "none" }, T.exams + 0.46);
+      flash(T.exams + 0.4, 0.5);
+      // Se reduce a una línea pequeña sobre la pregunta
+      tl.to("#exams-tag", { scale: 0.5, y: -88, duration: 0.45, ease: "power3.inOut" }, T.ask - 0.15);
+
+      /* ---------------- 0:05 · ¿NECESITAS SUBIR TU PUNTAJE? ---------------- */
+      ["#ask-1", "#ask-2"].forEach((id, i) => {
+        const t = T.ask + 0.2 + i * 0.32;
+        tl.fromTo(id, { clipPath: "inset(0% 100% 0% 0%)", opacity: 1 }, { clipPath: "inset(0% 0% 0% 0%)", duration: 0.4, ease: "power2.out" }, t);
+        tl.to(id, { opacity: 0.45, duration: 0.04, ease: "none" }, t + 0.42);
+        tl.to(id, { opacity: 1, duration: 0.04, ease: "none" }, t + 0.5);
+      });
+      tl.to("#ask-2", { scale: 1.08, duration: 0.16, yoyo: true, repeat: 1, ease: "power2.out" }, T.ask + 1.1);
       tl.fromTo("#board", { opacity: 0, y: 60, scale: 0.94 }, { opacity: 1, y: 0, scale: 1, duration: 0.7, ease: "back.out(1.4)" }, T.board);
       // Encendido del contador (parpadeo LED)
       tl.fromTo("#counter-box", { opacity: 0 }, { opacity: 1, duration: 0.04, ease: "none" }, T.board + 0.6);
@@ -216,7 +237,7 @@
       flash(T.score + 0.2, 0.35);
 
       /* ---------------- 0:14 - 0:17 · Claim ---------------- */
-      tl.to(["#open-1", "#open-2", "#open-3"], { opacity: 0, y: -40, duration: 0.35, ease: "power2.in", stagger: 0.05 }, T.claim - 0.35);
+      tl.to(["#exams-tag", "#ask-1", "#ask-2"], { opacity: 0, y: "-=40", duration: 0.35, ease: "power2.in", stagger: 0.05 }, T.claim - 0.35);
       tl.fromTo("#claim-1", { opacity: 0, y: 60, scale: 0.9 }, { opacity: 1, y: 0, scale: 1, duration: 0.55, ease: "back.out(1.8)" }, T.claim);
       tl.fromTo("#claim-2", { opacity: 0, y: 60, scale: 0.9 }, { opacity: 1, y: 0, scale: 1, duration: 0.55, ease: "back.out(1.8)" }, T.claim + 0.25);
       tl.to("#claim-2", { scale: 1.06, duration: 0.18, yoyo: true, repeat: 1, ease: "sine.inOut" }, T.claim + 1.0);

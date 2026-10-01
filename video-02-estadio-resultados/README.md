@@ -12,8 +12,8 @@ Exportación lista: `export/aci-video-02.mp4` (H.264).
 
 | Archivo | Qué editar |
 | --- | --- |
-| `index.html` | Busca `EDITAR`: titular, claim, etiquetas del tablero, mini marcador (`#score-plate`), nombres de la cinta LED, franja fija 94% + garantía (`.proof-bar`), CTA, logo |
-| `script.js` | `T` (tiempos; `T.score` = mini marcador, `T.proof` = franja fija), `COUNTER` (hitos del contador: 120, 350, 780, 1.250, +2.000), `EFFECT` (94), `NAMES` (resultados del tablero), `TICKS` (momentos de actualización) |
+| `index.html` | Busca `EDITAR`: hook, exámenes, pregunta, claim, etiquetas del tablero, mini marcador (`#score-plate`), nombres de la cinta LED, franja fija 94% + garantía (`.proof-bar`), CTA, logo |
+| `script.js` | `T` (tiempos; `T.open/exams/ask` = secuencia de inicio, `T.score` = mini marcador, `T.proof` = franja fija), `COUNTER` (hitos del contador: 120, 350, 780, 1.250, +2.000), `EFFECT` (94), `NAMES` (resultados del tablero), `TICKS` (momentos de actualización) |
 | `styles.css` | Colores y medidas en `:root` |
 
 Los nombres de `NAMES` y de la cinta son de ejemplo: reemplázalos por nombres reales (sin apellido).
@@ -23,7 +23,9 @@ Si cambias `T.end`, cambia también `data-duration` en `#root`.
 
 | Tiempo | Momento |
 | --- | --- |
-| 0:00–0:02 | Estadio y barrido de luces; desde 0,3 s el hook "EL PUNTAJE / NO SE IMPROVISA. / SE PREPARA." entra con barrido LED línea por línea; logo |
+| 0:00–0:03 | Estadio y barrido de luces; desde 0,3 s el hook "SABER INGLÉS / NO TE GARANTIZA / EL PUNTAJE." entra con barrido LED línea por línea; logo |
+| 0:03–0:04 | "IELTS · TOEFL · PTE" grande con destello |
+| 0:05–0:14 | "¿NECESITAS SUBIR / TU PUNTAJE?"; los exámenes quedan como línea pequeña encima |
 | 0:03 | Entra el tablero LED y la franja fija inferior "94% de efectividad · Garantía: si no pasas, repites gratis" (visible hasta el final) |
 | 0:05–0:11 | Contador 120 → 350 → 780 → 1.250 → +2.000 con destellos; tablero de resultados que se actualiza cada vez más rápido; cinta LED con nombres |
 | 0:11–0:13 | +2.000 estudiantes certificados y luego 94% de efectividad (clímax) |
