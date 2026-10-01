@@ -11,13 +11,14 @@
   const T = {
     lights: 0.1,        // 0:00 barrido de luces
     logo: 0.5,          //      logo
-    open: 2.0,          // 0:02 "Resultados que sí se ven."
+    open: 0.3,          // 0:00 "EL PUNTAJE NO SE IMPROVISA. SE PREPARA." (barrido LED)
     board: 3.0,         //      entra el tablero LED
     ticker: 4.8,        // 0:05 el ticker empieza a llenarse (se acelera)
     effect: 11.9,       // 0:12 94% de efectividad
     score: 13.0,        // 0:13 mini marcador "ACI 3 - IELTS 0" (guiño visual)
     claim: 14.0,        // 0:14 "RESULTADOS REALES. NO PROMESAS."
-    guarantee: 15.3,    // 0:15 garantía
+    proof: 3.4,         // 0:03 franja fija: 94% + garantía (visible hasta el final)
+    proofPulse: 15.3,   // 0:15 pulso de la franja
     cta: 17.0,          // 0:17 CTA
     end: 19.5,          // duración total (= data-duration)
   };
@@ -95,8 +96,15 @@
       tl.fromTo("#cam-drift", { scale: 1 }, { scale: 1.02, duration: T.end, ease: "none" }, 0);
 
       /* ---------------- 0:02 - 0:05 · Titular + tablero ---------------- */
-      tl.fromTo("#open-1", { opacity: 0, y: 70 }, { opacity: 1, y: 0, duration: 0.6, ease: "back.out(1.7)" }, T.open);
-      tl.fromTo("#open-2", { opacity: 0, y: 70 }, { opacity: 1, y: 0, duration: 0.6, ease: "back.out(1.7)" }, T.open + 0.3);
+      // Titular con barrido LED: cada línea se "enciende" de izquierda a derecha y parpadea
+      ["#open-1", "#open-2", "#open-3"].forEach((id, i) => {
+        const t = T.open + i * 0.32;
+        tl.fromTo(id, { clipPath: "inset(0% 100% 0% 0%)", opacity: 1 }, { clipPath: "inset(0% 0% 0% 0%)", duration: 0.4, ease: "power2.out" }, t);
+        tl.to(id, { opacity: 0.45, duration: 0.04, ease: "none" }, t + 0.42);
+        tl.to(id, { opacity: 1, duration: 0.04, ease: "none" }, t + 0.5);
+      });
+      tl.to("#open-3", { scale: 1.08, duration: 0.16, yoyo: true, repeat: 1, ease: "power2.out" }, T.open + 1.25);
+      flash(T.open + 1.25, 0.4);
       tl.fromTo("#board", { opacity: 0, y: 60, scale: 0.94 }, { opacity: 1, y: 0, scale: 1, duration: 0.7, ease: "back.out(1.4)" }, T.board);
       // Encendido del contador (parpadeo LED)
       tl.fromTo("#counter-box", { opacity: 0 }, { opacity: 1, duration: 0.04, ease: "none" }, T.board + 0.6);
@@ -207,17 +215,20 @@
       tl.to("#score-plate", { scale: 1.04, duration: 0.12, yoyo: true, repeat: 1, ease: "power2.out" }, T.score + 0.45);
       flash(T.score + 0.2, 0.35);
 
-      /* ---------------- 0:14 - 0:17 · Claim + garantía ---------------- */
-      tl.to(["#open-1", "#open-2"], { opacity: 0, y: -40, duration: 0.35, ease: "power2.in", stagger: 0.05 }, T.claim - 0.35);
+      /* ---------------- 0:14 - 0:17 · Claim ---------------- */
+      tl.to(["#open-1", "#open-2", "#open-3"], { opacity: 0, y: -40, duration: 0.35, ease: "power2.in", stagger: 0.05 }, T.claim - 0.35);
       tl.fromTo("#claim-1", { opacity: 0, y: 60, scale: 0.9 }, { opacity: 1, y: 0, scale: 1, duration: 0.55, ease: "back.out(1.8)" }, T.claim);
       tl.fromTo("#claim-2", { opacity: 0, y: 60, scale: 0.9 }, { opacity: 1, y: 0, scale: 1, duration: 0.55, ease: "back.out(1.8)" }, T.claim + 0.25);
       tl.to("#claim-2", { scale: 1.06, duration: 0.18, yoyo: true, repeat: 1, ease: "sine.inOut" }, T.claim + 1.0);
 
-      tl.fromTo("#guarantee", { opacity: 0, y: 30, scale: 0.9 }, { opacity: 1, y: 0, scale: 1, duration: 0.55, ease: "back.out(1.7)" }, T.guarantee);
+      /* ---------------- Franja fija: 94% + garantía ---------------- */
+      tl.fromTo([".proof-chip"], { opacity: 0, y: 30, scale: 0.9 }, { opacity: 1, y: 0, scale: 1, duration: 0.5, ease: "back.out(1.7)", stagger: 0.15 }, T.proof);
       document.querySelectorAll(".g-icon path").forEach((p) => {
         const len = prepDraw(p);
-        tl.fromTo(p, { strokeDashoffset: len }, { strokeDashoffset: 0, duration: 0.5, ease: "power2.out" }, T.guarantee + 0.2);
+        tl.fromTo(p, { strokeDashoffset: len }, { strokeDashoffset: 0, duration: 0.5, ease: "power2.out" }, T.proof + 0.3);
       });
+      // Pulso de refuerzo en el cierre
+      tl.to(".proof-chip", { scale: 1.06, duration: 0.18, yoyo: true, repeat: 1, ease: "sine.inOut", stagger: 0.15 }, T.proofPulse);
 
       /* ---------------- 0:17 - 0:19.5 · CTA ---------------- */
       tl.fromTo("#cta", { opacity: 0, y: 60, scale: 0.9 }, { opacity: 1, y: 0, scale: 1, duration: 0.55, ease: "back.out(1.7)" }, T.cta);

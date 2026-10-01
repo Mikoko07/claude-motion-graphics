@@ -21,10 +21,10 @@
   --board-top: #072b54;
   --board-bottom: #041c38;
 
-  --logo-top: 84px;
-  --logo-width: 400px;
-  --headline-top: 222px;
-  --board-y: 440px;
+  --logo-top: 66px;
+  --logo-width: 360px;
+  --headline-top: 186px;
+  --board-y: 432px;
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -120,7 +120,9 @@ body { width: 1080px; height: 1920px; overflow: hidden; background: var(--blue-9
 .logo { display: block; width: var(--logo-width); height: auto; }
 .headline,
 .claim { position: absolute; top: var(--headline-top); left: 40px; right: 40px; text-align: center; color: var(--white); }
-.headline { font-weight: 800; font-size: 86px; line-height: 1.06; letter-spacing: -0.02em; }
+.headline { font-weight: 900; font-size: 70px; line-height: 1.06; letter-spacing: -0.01em; }
+.headline-accent { color: var(--sky-900); }
+.claim { top: 214px; }
 .claim { font-weight: 900; font-size: 76px; line-height: 1.1; letter-spacing: -0.01em; }
 .headline-line,
 .claim-line { display: block; }
@@ -308,7 +310,7 @@ body { width: 1080px; height: 1920px; overflow: hidden; background: var(--blue-9
 /* ============================ CINTA LED ============================ */
 .ribbon {
   position: absolute;
-  top: 1346px;
+  top: 1336px;
   left: 0;
   right: 0;
   height: 72px;
@@ -321,24 +323,34 @@ body { width: 1080px; height: 1920px; overflow: hidden; background: var(--blue-9
 .ribbon-track span { font-weight: 800; font-size: 28px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--white); }
 .ribbon-track em { font-style: normal; color: var(--sky-900); margin-left: 6px; }
 
-/* ============================ GARANTÍA ============================ */
-.guarantee-slot { position: absolute; top: 1454px; left: 40px; right: 40px; display: flex; justify-content: center; }
-.guarantee {
+/* ============================ FRANJA FIJA: 94% + GARANTÍA ============================ */
+.proof-bar {
+  position: absolute;
+  top: 1448px;
+  left: 30px;
+  right: 30px;
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+}
+.proof-chip {
   display: flex;
   align-items: center;
-  gap: 16px;
-  padding: 18px 34px 18px 24px;
+  gap: 12px;
+  height: 78px;
+  padding: 0 26px 0 22px;
   border-radius: 999px;
-  background: rgba(2, 15, 31, 0.55);
+  background: rgba(2, 15, 31, 0.6);
   border: 3px solid var(--sky-900);
   font-weight: 600;
-  font-size: 29px;
+  font-size: 25px;
   line-height: 1.15;
   white-space: nowrap;
   color: var(--white);
 }
-.guarantee b { font-weight: 900; color: var(--sky-900); }
-.g-icon { display: block; flex: 0 0 auto; width: 44px; height: 44px; overflow: visible; }
+.proof-chip b { font-weight: 900; color: var(--sky-900); }
+.proof-num { font-weight: 900; font-size: 36px; color: var(--sky-900); letter-spacing: -0.01em; }
+.g-icon { display: block; flex: 0 0 auto; width: 38px; height: 38px; overflow: visible; }
 .g-stroke { fill: none; stroke: var(--white); stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
 .g-sky { fill: none; stroke: var(--sky-900); stroke-width: 3.5; stroke-linecap: round; stroke-linejoin: round; }
 
