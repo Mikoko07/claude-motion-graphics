@@ -111,38 +111,36 @@
                   <div class="chat" id="chat">
                     <p class="day-chip" id="day-chip">Hoy</p>
 
-                    <!-- Mensajes enviados (derecha) -->
-                    <div class="slot slot-out">
-                      <div class="bubble out" id="m1" data-layout-allow-overlap>
-                        <p>Ya no sé qué estudiar más.</p>
-                        <span class="meta">10:24 <svg class="ticks" viewBox="0 0 28 16" aria-hidden="true"><path d="M2 9 L6 13 L14 4" /><path d="M11 12 L12 13 L20 4" /></svg></span>
-                      </div>
-                    </div>
-                    <div class="slot slot-out">
-                      <div class="bubble out" id="m2" data-layout-allow-overlap>
-                        <p>Pero yo sí sé inglés.</p>
-                        <span class="meta">10:24 <svg class="ticks" viewBox="0 0 28 16" aria-hidden="true"><path d="M2 9 L6 13 L14 4" /><path d="M11 12 L12 13 L20 4" /></svg></span>
-                      </div>
-                    </div>
-                    <div class="slot slot-out">
-                      <div class="bubble out" id="m3" data-layout-allow-overlap>
-                        <p>Ya no sé qué estudiar más.</p>
-                        <span class="meta">10:25 <svg class="ticks" viewBox="0 0 28 16" aria-hidden="true"><path d="M2 9 L6 13 L14 4" /><path d="M11 12 L12 13 L20 4" /></svg></span>
+                    <!-- Recibido (izquierda): abre la conversación -->
+                    <div class="slot slot-in">
+                      <div class="typing" id="typing-1" aria-hidden="true"><i></i><i></i><i></i></div>
+                      <div class="bubble in" id="m1" data-layout-allow-overlap>
+                        <p>¿Otra vez no aprobaste el examen?</p>
+                        <span class="meta">10:24</span>
                       </div>
                     </div>
 
-                    <!-- Mensajes recibidos (izquierda) -->
+                    <!-- Enviado (derecha) -->
+                    <div class="slot slot-out">
+                      <div class="bubble out" id="m2" data-layout-allow-overlap>
+                        <p>Pero yo sí sé inglés.</p>
+                        <p>Ya no sé qué estudiar más.</p>
+                        <span class="meta">10:24 <svg class="ticks" viewBox="0 0 28 16" aria-hidden="true"><path d="M2 9 L6 13 L14 4" /><path d="M11 12 L12 13 L20 4" /></svg></span>
+                      </div>
+                    </div>
+
+                    <!-- Recibidos (izquierda) -->
                     <div class="slot slot-in">
-                      <div class="typing" id="typing-1" aria-hidden="true"><i></i><i></i><i></i></div>
-                      <div class="bubble in" id="m4" data-layout-allow-overlap>
+                      <div class="typing" id="typing-2" aria-hidden="true"><i></i><i></i><i></i></div>
+                      <div class="bubble in" id="m3" data-layout-allow-overlap>
                         <p>Sí. Ese es el error.</p>
                         <span class="meta">10:25</span>
                       </div>
                     </div>
                     <div class="slot slot-in">
-                      <div class="typing" id="typing-2" aria-hidden="true"><i></i><i></i><i></i></div>
+                      <div class="typing" id="typing-3" aria-hidden="true"><i></i><i></i><i></i></div>
                       <!-- Remate principal del chat -->
-                      <div class="bubble in key" id="m5" data-layout-allow-overlap>
+                      <div class="bubble in key" id="m4" data-layout-allow-overlap>
                         <div class="key-ring" id="key-ring"></div>
                         <p>No necesitas estudiar más.</p>
                         <p class="key-strong">Necesitas responder mejor.</p>
@@ -154,7 +152,12 @@
                   <!-- Barra para escribir -->
                   <div class="composer">
                     <svg class="ic ic-plus" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5 V19 M5 12 H19" /></svg>
-                    <div class="composer-field">Escribe un mensaje...</div>
+                    <div class="composer-field">
+                      <span class="cf-placeholder" id="cf-placeholder">Escribe un mensaje...</span>
+                      <!-- Texto que se "escribe" antes de enviar m2 (debe coincidir con m2) -->
+                      <span class="cf-typed"><span class="cf-text" id="cf-typed" data-text="Pero yo sí sé inglés. Ya no sé qué estudiar más."></span></span>
+                    </div>
+                    <div class="send-btn" id="send-btn"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12 L20 4 L14 20 L11 13 Z" /></svg></div>
                     <svg class="ic ic-mic" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="3" width="6" height="11" rx="3" /><path d="M5 11 C5 15 8 18 12 18 C16 18 19 15 19 11 M12 18 V21" /></svg>
                   </div>
                 </div>

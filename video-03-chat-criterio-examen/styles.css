@@ -250,6 +250,27 @@ body { width: 1080px; height: 1920px; overflow: hidden; background: var(--blue-9
   color: var(--gray-600);
 }
 
+.composer-field { position: relative; overflow: hidden; white-space: nowrap; }
+.cf-placeholder,
+.cf-typed { position: absolute; left: 24px; right: 24px; top: 50%; transform: translateY(-50%); overflow: hidden; text-overflow: clip; }
+/* Contenedor rtl: al desbordar se ve el final del texto; el texto interno se aísla en ltr */
+.cf-typed { color: var(--blue-900); font-weight: 600; direction: rtl; text-align: left; }
+.cf-text { direction: ltr; unicode-bidi: isolate; }
+.send-btn {
+  position: absolute;
+  right: 0;
+  top: 6px;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: var(--blue-900);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+}
+.send-btn svg { width: 30px; height: 30px; fill: var(--sky-900); }
+
 /* ============================ BLOQUE COMERCIAL ============================ */
 .promo-slot { position: absolute; top: 1236px; left: 56px; right: 56px; }
 .promo {
