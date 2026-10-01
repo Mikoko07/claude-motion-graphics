@@ -1,0 +1,309 @@
+/* ============================================================================
+   ACI · VIDEO 3 · Conversación en celular
+   1080x1920. Colores y medidas clave en :root (EDITAR aquí).
+   Estados finales en CSS; GSAP (script.js) anima desde/hacia ellos.
+   ============================================================================ */
+
+@font-face { font-family: "Montserrat"; src: url("assets/fonts/Montserrat-500.woff2") format("woff2"); font-weight: 500; font-style: normal; font-display: block; }
+@font-face { font-family: "Montserrat"; src: url("assets/fonts/Montserrat-600.woff2") format("woff2"); font-weight: 600; font-style: normal; font-display: block; }
+@font-face { font-family: "Montserrat"; src: url("assets/fonts/Montserrat-700.woff2") format("woff2"); font-weight: 700; font-style: normal; font-display: block; }
+@font-face { font-family: "Montserrat"; src: url("assets/fonts/Montserrat-800.woff2") format("woff2"); font-weight: 800; font-style: normal; font-display: block; }
+@font-face { font-family: "Montserrat"; src: url("assets/fonts/Montserrat-900.woff2") format("woff2"); font-weight: 900; font-style: normal; font-display: block; }
+
+:root {
+  --blue-900: #0a396d;   /* Blue 900 · fondo */
+  --sky-900: #38d7fc;    /* Blue Sky 900 · acentos */
+  --red-900: #c63030;    /* Red 900 · bloque comercial y CTA */
+  --white: #ffffff;
+  --gray-100: #e9eef4;   /* gris claro de apoyo */
+  --gray-300: #b9c6d6;
+  --gray-600: #4d5b6c;   /* metadatos del chat */
+  --chat-bg: #f2f5f9;    /* fondo de la conversación */
+  --bubble-out: #d6f6fe; /* globo enviado (azul cielo suave) */
+
+  --logo-top: 60px;
+  --logo-width: 340px;
+  --phone-top: 186px;
+  --phone-w: 700px;
+  --phone-h: 1110px;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html,
+body { width: 1080px; height: 1920px; overflow: hidden; background: var(--blue-900); }
+
+#root {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  font-family: "Montserrat", sans-serif;
+  color: var(--white);
+  -webkit-font-smoothing: antialiased;
+}
+
+.layer { position: absolute; inset: 0; }
+
+/* ============================ FONDO ============================ */
+.bg-fill { position: absolute; inset: 0; background: var(--blue-900); }
+.bg-glow {
+  position: absolute;
+  left: 0;
+  top: 300px;
+  width: 1080px;
+  height: 1100px;
+  border-radius: 50%;
+  background: radial-gradient(closest-side, rgba(56, 215, 252, 0.18), rgba(56, 215, 252, 0.04) 60%, rgba(56, 215, 252, 0) 100%);
+}
+.deco { position: absolute; inset: 0; }
+.deco svg path.draw { fill: none; stroke: var(--sky-900); stroke-width: 4; stroke-linecap: round; opacity: 0.3; }
+.deco svg path.draw.thin { stroke-width: 2; opacity: 0.2; }
+.deco-arc { position: absolute; right: -150px; top: -110px; width: 440px; height: 300px; }
+.deco-arc-bottom { position: absolute; left: -90px; top: 1700px; width: 320px; height: 240px; }
+
+.rays { position: absolute; top: 560px; width: 120px; height: 160px; overflow: visible; }
+.rays-left { left: 62px; }
+.rays-right { right: 62px; }
+.rays path { fill: none; stroke: var(--sky-900); stroke-width: 8; stroke-linecap: round; }
+
+/* ============================ LOGO ============================ */
+.logo-slot { position: absolute; top: var(--logo-top); left: 0; right: 0; display: flex; justify-content: center; }
+.logo { display: block; width: var(--logo-width); height: auto; }
+
+/* ============================ CELULAR ============================ */
+.phone-wrap {
+  position: absolute;
+  top: var(--phone-top);
+  left: calc(50% - var(--phone-w) / 2);
+  width: var(--phone-w);
+  height: var(--phone-h);
+}
+.phone-motion,
+.phone-buzz { width: 100%; height: 100%; }
+.phone {
+  width: 100%;
+  height: 100%;
+  padding: 14px;
+  border-radius: 72px;
+  background: linear-gradient(150deg, #1c2f47 0%, #0b1a2e 100%);
+  box-shadow: 0 50px 90px rgba(2, 16, 36, 0.55), 0 10px 24px rgba(2, 16, 36, 0.3), inset 0 0 0 3px rgba(185, 198, 214, 0.35);
+}
+.screen {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 58px;
+  overflow: hidden;
+  background: var(--chat-bg);
+  color: var(--blue-900);
+}
+
+.statusbar {
+  position: relative;
+  height: 58px;
+  padding: 0 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--white);
+  font-weight: 700;
+  font-size: 21px;
+}
+.island { width: 120px; height: 34px; border-radius: 20px; background: #0b1a2e; }
+.status-icons { display: flex; gap: 5px; align-items: flex-end; }
+.status-icons i { display: block; width: 6px; background: var(--blue-900); border-radius: 2px; }
+.status-icons i:nth-child(1) { height: 8px; }
+.status-icons i:nth-child(2) { height: 12px; }
+.status-icons i:nth-child(3) { height: 16px; }
+
+.chat-head {
+  position: relative;
+  height: 104px;
+  padding: 0 28px 0 18px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  background: var(--white);
+  border-bottom: 2px solid var(--gray-100);
+}
+.ic { display: block; width: 34px; height: 34px; fill: none; stroke: var(--blue-900); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.ic-back { width: 30px; height: 30px; stroke-width: 2.6; }
+.ic-dots { fill: var(--blue-900); stroke: none; }
+.avatar {
+  flex: 0 0 auto;
+  width: 66px;
+  height: 66px;
+  border-radius: 50%;
+  background: var(--blue-900);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.avatar svg { width: 36px; height: 36px; }
+.av-stroke { fill: none; stroke: var(--white); stroke-width: 2.4; stroke-linejoin: round; }
+.av-sky { fill: none; stroke: var(--sky-900); stroke-width: 2.6; stroke-linecap: round; }
+.contact { flex: 1 1 auto; min-width: 0; }
+.contact-name { font-weight: 800; font-size: 30px; line-height: 1.15; }
+.contact-status { position: relative; height: 26px; margin-top: 2px; font-weight: 600; font-size: 20px; line-height: 26px; color: var(--gray-600); }
+.st { position: absolute; left: 0; top: 0; display: flex; align-items: center; gap: 8px; white-space: nowrap; }
+.st-typing { opacity: 0; color: var(--blue-900); font-weight: 700; }
+.dot { display: block; width: 10px; height: 10px; border-radius: 50%; background: var(--sky-900); }
+.head-icons { display: flex; gap: 22px; }
+
+/* ============================ CONVERSACIÓN ============================ */
+.chat { padding: 22px 26px 0; display: flex; flex-direction: column; gap: 16px; }
+.day-chip {
+  align-self: center;
+  padding: 6px 18px;
+  border-radius: 12px;
+  background: var(--gray-100);
+  font-weight: 700;
+  font-size: 18px;
+  color: var(--gray-600);
+}
+.slot { position: relative; display: flex; }
+.slot-out { justify-content: flex-end; }
+.slot-in { justify-content: flex-start; }
+
+.bubble {
+  position: relative;
+  max-width: 520px;
+  padding: 16px 22px 12px;
+  border-radius: 28px;
+  box-shadow: 0 4px 10px rgba(10, 57, 109, 0.08);
+}
+.bubble p { font-weight: 600; font-size: 31px; line-height: 1.25; }
+.bubble.out { background: var(--bubble-out); border-bottom-right-radius: 8px; }
+.bubble.in { background: var(--white); border-bottom-left-radius: 8px; }
+.meta {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 6px;
+  margin-top: 4px;
+  font-weight: 600;
+  font-size: 17px;
+  color: var(--gray-600);
+}
+.ticks { width: 24px; height: 14px; fill: none; stroke: var(--blue-900); stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+
+/* Remate principal del chat */
+.bubble.key {
+  max-width: 620px;
+  padding: 20px 26px 14px;
+  background: var(--blue-900);
+  color: var(--white);
+  box-shadow: 0 14px 30px rgba(10, 57, 109, 0.35);
+}
+.bubble.key p { font-size: 30px; white-space: nowrap; }
+.bubble.key .key-strong { margin-top: 4px; font-weight: 900; font-size: 31px; color: var(--sky-900); }
+.bubble.key .meta { color: var(--gray-100); }
+.key-ring {
+  position: absolute;
+  inset: -12px;
+  border-radius: 36px;
+  border: 4px solid var(--sky-900);
+  opacity: 0;
+}
+
+/* Indicador de escritura */
+.typing {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 64px;
+  padding: 0 24px;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  border-radius: 28px;
+  border-bottom-left-radius: 8px;
+  background: var(--white);
+  box-shadow: 0 4px 10px rgba(10, 57, 109, 0.08);
+  opacity: 0;
+}
+.typing i { display: block; width: 13px; height: 13px; border-radius: 50%; background: var(--gray-300); }
+
+/* Barra para escribir */
+.composer {
+  position: absolute;
+  left: 18px;
+  right: 18px;
+  bottom: 60px;
+  height: 76px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.composer-field {
+  flex: 1 1 auto;
+  height: 64px;
+  padding: 0 24px;
+  display: flex;
+  align-items: center;
+  border-radius: 32px;
+  background: var(--white);
+  border: 2px solid var(--gray-100);
+  font-weight: 500;
+  font-size: 22px;
+  color: var(--gray-600);
+}
+
+/* ============================ BLOQUE COMERCIAL ============================ */
+.promo-slot { position: absolute; top: 1236px; left: 56px; right: 56px; }
+.promo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 26px 24px 28px;
+  border-radius: 32px;
+  background: var(--red-900);
+  box-shadow: 0 24px 50px rgba(2, 16, 36, 0.5);
+  text-align: center;
+}
+.promo-line { display: block; font-weight: 800; font-size: 37px; line-height: 1.2; letter-spacing: 0.01em; color: var(--white); }
+
+.exams {
+  position: absolute;
+  top: 1422px;
+  left: 40px;
+  right: 40px;
+  text-align: center;
+  font-weight: 900;
+  font-size: 46px;
+  line-height: 1.1;
+  letter-spacing: 0.06em;
+  color: var(--sky-900);
+}
+.support {
+  position: absolute;
+  top: 1490px;
+  left: 40px;
+  right: 40px;
+  text-align: center;
+  font-weight: 700;
+  font-size: 32px;
+  line-height: 1.2;
+  color: var(--white);
+}
+.sep { color: var(--gray-300); font-weight: 700; }
+
+/* ============================ CTA ============================ */
+.cta-slot { position: absolute; top: 1568px; left: calc(50% - 330px); width: 660px; height: 108px; }
+.cta {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 22px;
+  border-radius: 999px;
+  background: var(--red-900);
+  box-shadow: 0 20px 40px rgba(2, 16, 36, 0.45);
+}
+.cta-text { font-weight: 800; font-size: 42px; color: var(--white); letter-spacing: -0.01em; }
+.cta-arrow { display: block; width: 48px; height: 32px; overflow: visible; }
+.cta-arrow path { fill: none; stroke: var(--white); stroke-width: 5; stroke-linecap: round; stroke-linejoin: round; }
+.cta-ring { position: absolute; inset: 0; border-radius: 999px; border: 4px solid var(--red-900); opacity: 0; }

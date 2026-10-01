@@ -1,0 +1,206 @@
+<!doctype html>
+<!--
+  ============================================================================
+  ALIANZA COLOMBO INGLESA · VIDEO 3
+  "No necesitas estudiar más. Necesitas responder mejor."  Conversación en celular
+  Reel vertical 1080x1920 · 18 s · HTML + CSS + GSAP (composición HyperFrames)
+
+  Archivos:
+    index.html  -> estructura y TEXTOS editables (busca los comentarios "EDITAR")
+    styles.css  -> marca, layout, colores (variables en :root)
+    script.js   -> línea de tiempo GSAP y TIEMPOS editables (objeto T)
+
+  Assets (rutas editables):
+    assets/logos/logo-aci-blanco.png    -> imagotipo blanco oficial (obligatorio)
+    assets/logos/logo-aci-color.png     -> reservado (no se usa sobre azul oscuro)
+    assets/fonts/Montserrat-*.woff2     -> Montserrat
+    vendor/gsap.min.js                  -> GSAP 3.14.2 local
+
+  Exportar:
+    npx hyperframes render --quality delivery --fps 30 --output export/aci-video-03.mp4
+  ============================================================================
+-->
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <title>ACI · Responde con criterio de examen</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script src="vendor/gsap.min.js"></script>
+  </head>
+  <body>
+    <!-- Duración total: data-duration (debe coincidir con T.end en script.js) -->
+    <div
+      id="root"
+      data-composition-id="aci-video-03"
+      data-start="0"
+      data-duration="18"
+      data-width="1080"
+      data-height="1920"
+    >
+      <!-- ==================== CAPA 0 · FONDO ==================== -->
+      <div class="layer">
+        <div class="bg-fill"></div>
+        <div class="bg-glow" id="bg-glow"></div>
+        <div class="deco" id="deco">
+          <svg class="deco-arc" viewBox="0 0 520 420" aria-hidden="true">
+            <path class="draw" d="M500 30 C 380 40, 250 120, 170 230 S 60 380, 20 400" />
+            <path class="draw thin" d="M500 80 C 400 90, 290 160, 220 250 S 120 380, 80 410" />
+          </svg>
+          <svg class="deco-arc-bottom" viewBox="0 0 420 300" aria-hidden="true">
+            <path class="draw" d="M10 40 C 120 60, 220 140, 260 290" />
+          </svg>
+        </div>
+        <!-- Acentos azul cielo alrededor del celular (destellan con cada mensaje) -->
+        <svg class="rays rays-left" id="rays-left" viewBox="0 0 120 160" aria-hidden="true">
+          <path d="M100 40 L40 10" /><path d="M100 80 L20 80" /><path d="M100 120 L40 150" />
+        </svg>
+        <svg class="rays rays-right" id="rays-right" viewBox="0 0 120 160" aria-hidden="true">
+          <path d="M20 40 L80 10" /><path d="M20 80 L100 80" /><path d="M20 120 L80 150" />
+        </svg>
+      </div>
+
+      <!-- ==================== CAPA 1 · LOGO ==================== -->
+      <div class="layer">
+        <!-- EDITAR LOGO: reemplazar src por la versión oficial (SVG o PNG blanco). -->
+        <div class="logo-slot">
+          <img id="logo" class="logo" src="assets/logos/logo-aci-blanco.png" alt="Alianza Colombo Inglesa" />
+        </div>
+      </div>
+
+      <!-- ==================== CAPA 2 · CELULAR CON CHAT ==================== -->
+      <div class="layer">
+        <div class="phone-wrap">
+          <div class="phone-motion" id="phone-motion">
+            <div class="phone-buzz" id="phone-buzz">
+              <div class="phone">
+                <div class="screen">
+                  <!-- Barra de estado -->
+                  <div class="statusbar">
+                    <span>10:24</span>
+                    <span class="island"></span>
+                    <span class="status-icons"><i></i><i></i><i></i></span>
+                  </div>
+
+                  <!-- Encabezado del chat -->
+                  <div class="chat-head" id="chat-head">
+                    <svg class="ic ic-back" viewBox="0 0 24 24" aria-hidden="true"><path d="M15 4 L7 12 L15 20" /></svg>
+                    <!-- Avatar del contacto: ícono neutro de escritura (EDITAR si se desea otro) -->
+                    <div class="avatar" id="avatar">
+                      <svg viewBox="0 0 32 32" aria-hidden="true">
+                        <path class="av-stroke" d="M7 25 L9 18 L21 6 L26 11 L14 23 Z" />
+                        <path class="av-sky" d="M18 9 L23 14" />
+                      </svg>
+                    </div>
+                    <div class="contact">
+                      <!-- EDITAR nombre del contacto -->
+                      <p class="contact-name">IELTS Writing</p>
+                      <p class="contact-status">
+                        <span class="st st-online" id="st-online"><i class="dot"></i>en línea</span>
+                        <span class="st st-typing" id="st-typing">escribiendo…</span>
+                      </p>
+                    </div>
+                    <div class="head-icons">
+                      <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="7" width="13" height="10" rx="2" /><path d="M15 11 L22 7 V17 L15 13" /></svg>
+                      <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3 L9 3 L11 8 L8.5 9.5 C9.5 12 12 14.5 14.5 15.5 L16 13 L21 15 L21 18 C21 19.5 19.5 21 18 21 C10 20.5 3.5 14 3 6 C3 4.5 4.5 3 6 3 Z" /></svg>
+                      <svg class="ic ic-dots" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="5" r="1.6" /><circle cx="12" cy="12" r="1.6" /><circle cx="12" cy="19" r="1.6" /></svg>
+                    </div>
+                  </div>
+
+                  <!-- Conversación (EDITAR textos de los mensajes) -->
+                  <div class="chat" id="chat">
+                    <p class="day-chip" id="day-chip">Hoy</p>
+
+                    <!-- Mensajes enviados (derecha) -->
+                    <div class="slot slot-out">
+                      <div class="bubble out" id="m1" data-layout-allow-overlap>
+                        <p>Ya no sé qué estudiar más.</p>
+                        <span class="meta">10:24 <svg class="ticks" viewBox="0 0 28 16" aria-hidden="true"><path d="M2 9 L6 13 L14 4" /><path d="M11 12 L12 13 L20 4" /></svg></span>
+                      </div>
+                    </div>
+                    <div class="slot slot-out">
+                      <div class="bubble out" id="m2" data-layout-allow-overlap>
+                        <p>Pero yo sí sé inglés.</p>
+                        <span class="meta">10:24 <svg class="ticks" viewBox="0 0 28 16" aria-hidden="true"><path d="M2 9 L6 13 L14 4" /><path d="M11 12 L12 13 L20 4" /></svg></span>
+                      </div>
+                    </div>
+                    <div class="slot slot-out">
+                      <div class="bubble out" id="m3" data-layout-allow-overlap>
+                        <p>Ya no sé qué estudiar más.</p>
+                        <span class="meta">10:25 <svg class="ticks" viewBox="0 0 28 16" aria-hidden="true"><path d="M2 9 L6 13 L14 4" /><path d="M11 12 L12 13 L20 4" /></svg></span>
+                      </div>
+                    </div>
+
+                    <!-- Mensajes recibidos (izquierda) -->
+                    <div class="slot slot-in">
+                      <div class="typing" id="typing-1" aria-hidden="true"><i></i><i></i><i></i></div>
+                      <div class="bubble in" id="m4" data-layout-allow-overlap>
+                        <p>Sí. Ese es el error.</p>
+                        <span class="meta">10:25</span>
+                      </div>
+                    </div>
+                    <div class="slot slot-in">
+                      <div class="typing" id="typing-2" aria-hidden="true"><i></i><i></i><i></i></div>
+                      <!-- Remate principal del chat -->
+                      <div class="bubble in key" id="m5" data-layout-allow-overlap>
+                        <div class="key-ring" id="key-ring"></div>
+                        <p>No necesitas estudiar más.</p>
+                        <p class="key-strong">Necesitas responder mejor.</p>
+                        <span class="meta">10:25</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Barra para escribir -->
+                  <div class="composer">
+                    <svg class="ic ic-plus" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5 V19 M5 12 H19" /></svg>
+                    <div class="composer-field">Escribe un mensaje...</div>
+                    <svg class="ic ic-mic" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="3" width="6" height="11" rx="3" /><path d="M5 11 C5 15 8 18 12 18 C16 18 19 15 19 11 M12 18 V21" /></svg>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ==================== CAPA 3 · BLOQUE COMERCIAL + CTA ==================== -->
+      <div class="layer">
+        <!-- EDITAR BLOQUE COMERCIAL -->
+        <div class="promo-slot">
+          <div class="promo" id="promo">
+            <span class="promo-line" id="promo-1">EN ACI TE ENSEÑAMOS A RESPONDER</span>
+            <span class="promo-line" id="promo-2">CON CRITERIO DE EXAMEN.</span>
+          </div>
+        </div>
+
+        <!-- EDITAR LÍNEAS DE APOYO -->
+        <p class="exams" id="exams">IELTS <span class="sep">·</span> TOEFL <span class="sep">·</span> PTE</p>
+        <p class="support" id="support">94% efectividad <span class="sep">·</span> Tutor personalizado.</p>
+
+        <!-- EDITAR CTA -->
+        <div class="cta-slot">
+          <div class="cta-ring" id="cta-ring"></div>
+          <div class="cta" id="cta">
+            <span class="cta-text">Analicemos tu caso</span>
+            <svg class="cta-arrow" id="cta-arrow" viewBox="0 0 48 32" aria-hidden="true">
+              <path d="M4 16 H40 M28 5 L41 16 L28 27" />
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+      // Construye la timeline definida en script.js y la registra en HyperFrames.
+      // Si se abre index.html directamente en el navegador, se reproduce sola.
+      const tl = window.ACI3.build();
+      if (window.__timelines) {
+        window.__timelines["aci-video-03"] = tl;
+      } else {
+        window.ACI3.playStandalone(tl);
+      }
+    </script>
+  </body>
+</html>
