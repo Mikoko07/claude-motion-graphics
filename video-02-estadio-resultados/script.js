@@ -10,29 +10,29 @@
 (function () {
   const T = {
     lights: 0.1,        // 0:00 barrido de luces
-    logo: 0.5,          //      logo
-    ask: [2.0, 2.7, 3.4], // 0:02 - 0:04 "¿NECESITAS" / "SUBIR TU" / "PUNTAJE?" (impacto, grande al centro)
-    exams: 5.0,         // 0:05 cápsula roja "IELTS · TOEFL · PTE"
-    dock: 6.8,          // 0:07 el hook sube y queda como titular superior
-    board: 7.1,         //      entra el tablero LED
-    ticker: 8.0,        // 0:08 el tablero de resultados empieza a actualizarse
-    effect: 12.4,       // 0:12 94% de efectividad
-    score: 13.5,        // 0:13 mini marcador "ACI 3 - IELTS 0" (guiño visual)
-    claim: 14.6,        // 0:15 "RESULTADOS REALES. NO PROMESAS."
-    proof: 7.6,         // 0:08 franja fija: 94% + garantía (visible hasta el final)
-    proofPulse: 16.0,   // 0:16 pulso de la franja
-    cta: 17.6,          // 0:18 CTA
-    end: 20.0,          // duración total (= data-duration)
+    logo: 0.2,          //      logo
+    ask: [0.35, 0.75, 1.15], // 0:00 - 0:01 "¿NECESITAS" / "SUBIR TU" / "PUNTAJE?" (impacto, grande al centro)
+    exams: 1.75,        // 0:02 cápsula roja "IELTS · TOEFL · PTE"
+    dock: 3.8,          // 0:04 el hook sube y queda como titular superior
+    board: 4.1,         //      entra el tablero LED
+    ticker: 5.0,        // 0:05 el tablero de resultados empieza a actualizarse
+    effect: 9.4,        // 0:09 94% de efectividad
+    score: 10.5,        // 0:10 mini marcador "ACI 3 - IELTS 0" (guiño visual)
+    claim: 11.6,        // 0:12 "RESULTADOS REALES. NO PROMESAS."
+    proof: 4.6,         // 0:05 franja fija: 94% + garantía (visible hasta el final)
+    proofPulse: 13.0,   // 0:13 pulso de la franja
+    cta: 14.6,          // 0:15 CTA
+    end: 17.0,          // duración total (= data-duration)
   };
 
   // Hitos del contador de estudiantes certificados: [valor, segundo]
   // El último hito se muestra con "+" (p. ej. "+2.000").
   const COUNTER = [
-    [120, 8.7],
-    [350, 9.4],
-    [780, 10.1],
-    [1250, 10.8],
-    [2000, 11.7],
+    [120, 5.7],
+    [350, 6.4],
+    [780, 7.1],
+    [1250, 7.8],
+    [2000, 8.7],
   ];
   const EFFECT = 94; // porcentaje de efectividad
 
@@ -46,7 +46,7 @@
     ["Paula", "7.5"], ["Gabriel", "7.0"], ["Manuela", "6.5"], ["Esteban", "7.0"],
   ];
   // Momentos de actualización del tablero (cada vez más rápidos = volumen creciente)
-  const TICKS = [8.0, 8.7, 9.3, 9.8, 10.25, 10.65, 11.0, 11.3, 11.6];
+  const TICKS = [5.0, 5.7, 6.3, 6.8, 7.25, 7.65, 8.0, 8.3, 8.6];
   const SLOTS = 4; // filas visibles en el tablero
 
   // 2000 -> "2.000" (separador de miles colombiano, sin depender del locale)

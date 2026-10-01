@@ -1,6 +1,6 @@
 # ACI · Video 2 (v2) — Estadio / tablero LED de resultados
 
-Reel vertical **1080×1920 · 20 s · 30 fps** para Alianza Colombo Inglesa.
+Reel vertical **1080×1920 · 17 s · 30 fps** para Alianza Colombo Inglesa.
 Universo visual de estadio nocturno. El protagonista es el volumen: un contador LED sube hasta
 **+2.000 estudiantes certificados**, un tablero se actualiza en cascada con resultados (solo nombre),
 una cinta LED recorre nombres y el tablero remata en **94% de efectividad**. Debajo del 94% aparece un
@@ -23,15 +23,14 @@ Si cambias `T.end`, cambia también `data-duration` en `#root`.
 
 | Tiempo | Momento |
 | --- | --- |
-| 0:00–0:02 | Estadio: las luces se encienden con barrido; logo ACI |
-| 0:02–0:04 | Hook principal grande al centro, línea por línea con impacto: "¿NECESITAS / SUBIR TU / PUNTAJE?" |
-| 0:05 | Cápsula roja "IELTS · TOEFL · PTE" debajo del hook |
-| 0:07 | El hook sube y queda como titular superior; entran el tablero LED y la franja fija 94% + garantía |
-| 0:08–0:12 | Contador 120 → 350 → 780 → 1.250 → +2.000 con destellos; tablero de resultados que se actualiza cada vez más rápido; cinta LED con nombres |
-| 0:12–0:13 | +2.000 estudiantes certificados y luego 94% de efectividad (clímax) |
-| 0:13,5 | Mini marcador "ACI 3 - IELTS 0" bajo el 94%: la placa se enciende, barrido de luz y "score update" del 3 (~0,45 s); queda visible hasta el cierre |
-| 0:14,6–0:17 | "RESULTADOS REALES. NO PROMESAS."; la franja de 94% y garantía hace un pulso de refuerzo |
-| 0:17,6–0:20 | CTA rojo con pulse y flecha; tablero, cifras, marcador y garantía visibles |
+| 0:00–0:01 | Luces del estadio con barrido y logo ACI; desde 0,35 s el hook principal grande al centro, línea por línea con impacto: "¿NECESITAS / SUBIR TU / PUNTAJE?" |
+| 0:02 | Cápsula roja "IELTS · TOEFL · PTE" debajo del hook |
+| 0:04 | El hook sube y queda como titular superior; entran el tablero LED y la franja fija 94% + garantía |
+| 0:05–0:09 | Contador 120 → 350 → 780 → 1.250 → +2.000 con destellos; tablero de resultados que se actualiza cada vez más rápido; cinta LED con nombres |
+| 0:09–0:10 | +2.000 estudiantes certificados y luego 94% de efectividad (clímax) |
+| 0:10,5 | Mini marcador "ACI 3 - IELTS 0" bajo el 94%: la placa se enciende, barrido de luz y "score update" del 3 (~0,45 s); queda visible hasta el cierre |
+| 0:11,6–0:14 | "RESULTADOS REALES. NO PROMESAS."; la franja de 94% y garantía hace un pulso de refuerzo |
+| 0:14,6–0:17 | CTA rojo con pulse y flecha; tablero, cifras, marcador y garantía visibles |
 
 ## Exportar
 
