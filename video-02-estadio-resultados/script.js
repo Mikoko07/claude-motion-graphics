@@ -13,13 +13,13 @@
     logo: 0.2,          //      logo
     ask: [0.35, 0.75, 1.15], // 0:00 - 0:01 "¿NECESITAS" / "SUBIR TU" / "PUNTAJE?" (impacto, grande al centro)
     exams: 1.75,        // 0:02 cápsula roja "IELTS · TOEFL · PTE"
-    dock: 6.8,          // 0:07 el hook sube y queda como titular superior
-    board: 7.1,         //      entra el tablero LED
-    ticker: 8.0,        // 0:08 el tablero de resultados empieza a actualizarse
+    dock: 3.6,          // 0:04 el hook sube y queda como titular superior
+    board: 3.9,         //      entra el tablero LED
+    ticker: 4.8,        // 0:05 el tablero de resultados empieza a actualizarse
     effect: 12.4,       // 0:12 94% de efectividad
     score: 13.5,        // 0:13 mini marcador "ACI 3 - IELTS 0" (guiño visual)
     claim: 14.6,        // 0:15 "RESULTADOS REALES. NO PROMESAS."
-    proof: 7.6,         // 0:08 franja fija: 94% + garantía (visible hasta el final)
+    proof: 4.4,         // 0:04 franja fija: 94% + garantía (visible hasta el final)
     proofPulse: 16.0,   // 0:16 pulso de la franja
     cta: 17.6,          // 0:18 CTA
     end: 20.0,          // duración total (= data-duration)
@@ -28,11 +28,11 @@
   // Hitos del contador de estudiantes certificados: [valor, segundo]
   // El último hito se muestra con "+" (p. ej. "+2.000").
   const COUNTER = [
-    [120, 8.7],
-    [350, 9.4],
-    [780, 10.1],
-    [1250, 10.8],
-    [2000, 11.7],
+    [120, 5.4],
+    [350, 6.6],
+    [780, 7.8],
+    [1250, 9.0],
+    [2000, 10.6],
   ];
   const EFFECT = 94; // porcentaje de efectividad
 
@@ -46,7 +46,7 @@
     ["Paula", "7.5"], ["Gabriel", "7.0"], ["Manuela", "6.5"], ["Esteban", "7.0"],
   ];
   // Momentos de actualización del tablero (cada vez más rápidos = volumen creciente)
-  const TICKS = [8.0, 8.7, 9.3, 9.8, 10.25, 10.65, 11.0, 11.3, 11.6];
+  const TICKS = [4.8, 5.7, 6.5, 7.2, 7.85, 8.45, 9.0, 9.5, 9.95, 10.35, 10.75, 11.15, 11.55];
   const SLOTS = 4; // filas visibles en el tablero
 
   // 2000 -> "2.000" (separador de miles colombiano, sin depender del locale)
