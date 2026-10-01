@@ -11,28 +11,28 @@
   const T = {
     lights: 0.1,        // 0:00 barrido de luces
     logo: 0.5,          //      logo
-    open: 0.3,          // 0:00 "SABER INGLÉS / NO TE GARANTIZA / EL PUNTAJE." (barrido LED)
-    exams: 3.3,         // 0:03 "IELTS · TOEFL · PTE"
-    ask: 4.7,           // 0:05 "¿NECESITAS SUBIR TU PUNTAJE?" (se queda hasta el claim)
-    board: 3.0,         //      entra el tablero LED
-    ticker: 4.8,        // 0:05 el ticker empieza a llenarse (se acelera)
-    effect: 11.9,       // 0:12 94% de efectividad
-    score: 13.0,        // 0:13 mini marcador "ACI 3 - IELTS 0" (guiño visual)
-    claim: 14.0,        // 0:14 "RESULTADOS REALES. NO PROMESAS."
-    proof: 3.4,         // 0:03 franja fija: 94% + garantía (visible hasta el final)
-    proofPulse: 15.3,   // 0:15 pulso de la franja
-    cta: 17.0,          // 0:17 CTA
-    end: 19.5,          // duración total (= data-duration)
+    ask: [2.0, 2.7, 3.4], // 0:02 - 0:04 "¿NECESITAS" / "SUBIR TU" / "PUNTAJE?" (impacto, grande al centro)
+    exams: 5.0,         // 0:05 cápsula roja "IELTS · TOEFL · PTE"
+    dock: 6.8,          // 0:07 el hook sube y queda como titular superior
+    board: 7.1,         //      entra el tablero LED
+    ticker: 8.0,        // 0:08 el tablero de resultados empieza a actualizarse
+    effect: 12.4,       // 0:12 94% de efectividad
+    score: 13.5,        // 0:13 mini marcador "ACI 3 - IELTS 0" (guiño visual)
+    claim: 14.6,        // 0:15 "RESULTADOS REALES. NO PROMESAS."
+    proof: 7.6,         // 0:08 franja fija: 94% + garantía (visible hasta el final)
+    proofPulse: 16.0,   // 0:16 pulso de la franja
+    cta: 17.6,          // 0:18 CTA
+    end: 20.0,          // duración total (= data-duration)
   };
 
   // Hitos del contador de estudiantes certificados: [valor, segundo]
   // El último hito se muestra con "+" (p. ej. "+2.000").
   const COUNTER = [
-    [120, 5.3],
-    [350, 6.5],
-    [780, 7.6],
-    [1250, 8.7],
-    [2000, 10.2],
+    [120, 8.7],
+    [350, 9.4],
+    [780, 10.1],
+    [1250, 10.8],
+    [2000, 11.7],
   ];
   const EFFECT = 94; // porcentaje de efectividad
 
@@ -46,7 +46,7 @@
     ["Paula", "7.5"], ["Gabriel", "7.0"], ["Manuela", "6.5"], ["Esteban", "7.0"],
   ];
   // Momentos de actualización del tablero (cada vez más rápidos = volumen creciente)
-  const TICKS = [4.8, 5.8, 6.7, 7.5, 8.2, 8.8, 9.35, 9.85, 10.3];
+  const TICKS = [8.0, 8.7, 9.3, 9.8, 10.25, 10.65, 11.0, 11.3, 11.6];
   const SLOTS = 4; // filas visibles en el tablero
 
   // 2000 -> "2.000" (separador de miles colombiano, sin depender del locale)
@@ -97,35 +97,22 @@
       gsap.set("#cam-drift", { transformOrigin: "50% 40%" });
       tl.fromTo("#cam-drift", { scale: 1 }, { scale: 1.02, duration: T.end, ease: "none" }, 0);
 
-      /* ---------------- 0:02 - 0:05 · Titular + tablero ---------------- */
-      // Titular con barrido LED: cada línea se "enciende" de izquierda a derecha y parpadea
-      ["#open-1", "#open-2", "#open-3"].forEach((id, i) => {
-        const t = T.open + i * 0.32;
-        tl.fromTo(id, { clipPath: "inset(0% 100% 0% 0%)", opacity: 1 }, { clipPath: "inset(0% 0% 0% 0%)", duration: 0.4, ease: "power2.out" }, t);
-        tl.to(id, { opacity: 0.45, duration: 0.04, ease: "none" }, t + 0.42);
-        tl.to(id, { opacity: 1, duration: 0.04, ease: "none" }, t + 0.5);
+      /* ---------------- 0:02 - 0:05 · Hook principal ---------------- */
+      // Cada línea entra desde arriba con impacto deportivo (escala + rebote), destello y punch de cámara
+      ["#ask-1", "#ask-2", "#ask-3"].forEach((id, i) => {
+        const t = T.ask[i];
+        tl.fromTo(id, { opacity: 0, y: -90, scale: 1.25 }, { opacity: 1, y: 0, scale: 1, duration: 0.45, ease: "back.out(1.6)" }, t);
+        tl.to("#cam-punch", { scale: 1.012, duration: 0.1, yoyo: true, repeat: 1, ease: "power2.out" }, t + 0.25);
+        flash(t + 0.25, i === 2 ? 0.6 : 0.35);
       });
-      tl.to("#open-3", { scale: 1.08, duration: 0.16, yoyo: true, repeat: 1, ease: "power2.out" }, T.open + 1.25);
-      flash(T.open + 1.25, 0.4);
-      // Sale el hook
-      tl.to(["#open-1", "#open-2", "#open-3"], { opacity: 0, y: -30, duration: 0.25, ease: "power2.in", stagger: 0.04 }, T.exams - 0.35);
+      // 0:05 cápsula de exámenes
+      tl.fromTo("#hook-exams", { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }, T.exams);
+      // 0:07 el bloque sube y queda como titular superior (sin tapar el logo)
+      gsap.set("#hook", { transformOrigin: "50% 0%" });
+      tl.to("#hook", { scale: 0.46, y: -442, duration: 0.6, ease: "power3.inOut" }, T.dock);
+      // La cápsula crece un poco al subir para que los exámenes sigan siendo legibles
+      tl.to("#hook-exams", { scale: 1.3, transformOrigin: "50% 0%", duration: 0.6, ease: "power3.inOut" }, T.dock);
 
-      /* ---------------- 0:03 · IELTS · TOEFL · PTE ---------------- */
-      tl.fromTo("#exams-tag", { clipPath: "inset(0% 100% 0% 0%)", opacity: 1, scale: 1, y: 0 }, { clipPath: "inset(0% 0% 0% 0%)", duration: 0.35, ease: "power2.out" }, T.exams);
-      tl.to("#exams-tag", { opacity: 0.45, duration: 0.04, ease: "none" }, T.exams + 0.38);
-      tl.to("#exams-tag", { opacity: 1, duration: 0.04, ease: "none" }, T.exams + 0.46);
-      flash(T.exams + 0.4, 0.5);
-      // Se reduce a una línea pequeña sobre la pregunta
-      tl.to("#exams-tag", { scale: 0.5, y: -88, duration: 0.45, ease: "power3.inOut" }, T.ask - 0.15);
-
-      /* ---------------- 0:05 · ¿NECESITAS SUBIR TU PUNTAJE? ---------------- */
-      ["#ask-1", "#ask-2"].forEach((id, i) => {
-        const t = T.ask + 0.2 + i * 0.32;
-        tl.fromTo(id, { clipPath: "inset(0% 100% 0% 0%)", opacity: 1 }, { clipPath: "inset(0% 0% 0% 0%)", duration: 0.4, ease: "power2.out" }, t);
-        tl.to(id, { opacity: 0.45, duration: 0.04, ease: "none" }, t + 0.42);
-        tl.to(id, { opacity: 1, duration: 0.04, ease: "none" }, t + 0.5);
-      });
-      tl.to("#ask-2", { scale: 1.08, duration: 0.16, yoyo: true, repeat: 1, ease: "power2.out" }, T.ask + 1.1);
       tl.fromTo("#board", { opacity: 0, y: 60, scale: 0.94 }, { opacity: 1, y: 0, scale: 1, duration: 0.7, ease: "back.out(1.4)" }, T.board);
       // Encendido del contador (parpadeo LED)
       tl.fromTo("#counter-box", { opacity: 0 }, { opacity: 1, duration: 0.04, ease: "none" }, T.board + 0.6);
@@ -237,7 +224,7 @@
       flash(T.score + 0.2, 0.35);
 
       /* ---------------- 0:14 - 0:17 · Claim ---------------- */
-      tl.to(["#exams-tag", "#ask-1", "#ask-2"], { opacity: 0, y: "-=40", duration: 0.35, ease: "power2.in", stagger: 0.05 }, T.claim - 0.35);
+      tl.to("#hook", { opacity: 0, duration: 0.35, ease: "power2.in" }, T.claim - 0.35);
       tl.fromTo("#claim-1", { opacity: 0, y: 60, scale: 0.9 }, { opacity: 1, y: 0, scale: 1, duration: 0.55, ease: "back.out(1.8)" }, T.claim);
       tl.fromTo("#claim-2", { opacity: 0, y: 60, scale: 0.9 }, { opacity: 1, y: 0, scale: 1, duration: 0.55, ease: "back.out(1.8)" }, T.claim + 0.25);
       tl.to("#claim-2", { scale: 1.06, duration: 0.18, yoyo: true, repeat: 1, ease: "sine.inOut" }, T.claim + 1.0);

@@ -3,7 +3,7 @@
   ============================================================================
   ALIANZA COLOMBO INGLESA · VIDEO 2 (v2)
   Estadio / tablero LED: volumen de resultados reales
-  Reel vertical 1080x1920 · 19.5 s · HTML + CSS + GSAP (composición HyperFrames)
+  Reel vertical 1080x1920 · 20 s · HTML + CSS + GSAP (composición HyperFrames)
 
   Archivos:
     index.html  -> estructura y TEXTOS editables (busca los comentarios "EDITAR")
@@ -35,7 +35,7 @@
       id="root"
       data-composition-id="aci-video-02"
       data-start="0"
-      data-duration="19.5"
+      data-duration="20"
       data-width="1080"
       data-height="1920"
     >
@@ -65,21 +65,13 @@
           </div>
 
           <!-- EDITAR TITULAR DE APERTURA -->
-          <!-- EDITAR HOOK (0:00-0:03) -->
-          <h1 class="headline" id="headline-open">
-            <span class="headline-line" id="open-1">SABER INGLÉS</span>
-            <span class="headline-line" id="open-2">NO TE GARANTIZA</span>
-            <span class="headline-line headline-accent" id="open-3">EL PUNTAJE.</span>
-          </h1>
-
-          <!-- EDITAR EXÁMENES (0:03; luego queda pequeño sobre la pregunta) -->
-          <p class="exams-tag" id="exams-tag">IELTS <span class="dotsep">·</span> TOEFL <span class="dotsep">·</span> PTE</p>
-
-          <!-- EDITAR PREGUNTA (0:05 hasta el claim) -->
-          <h1 class="headline headline-ask" id="headline-ask">
-            <span class="headline-line" id="ask-1">¿NECESITAS SUBIR</span>
-            <span class="headline-line headline-accent" id="ask-2">TU PUNTAJE?</span>
-          </h1>
+          <!-- EDITAR HOOK PRINCIPAL: grande al centro (0:02-0:07), luego sube como titular -->
+          <div class="hook" id="hook">
+            <span class="hook-line" id="ask-1">¿NECESITAS</span>
+            <span class="hook-line" id="ask-2">SUBIR TU</span>
+            <span class="hook-line" id="ask-3">PUNTAJE?</span>
+            <span class="hook-exams" id="hook-exams">IELTS · TOEFL · PTE</span>
+          </div>
 
           <!-- EDITAR CLAIM PROTAGONISTA (reemplaza al titular de apertura) -->
           <h2 class="claim" id="claim">

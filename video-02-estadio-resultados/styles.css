@@ -21,7 +21,7 @@
   --board-top: #072b54;
   --board-bottom: #041c38;
 
-  --logo-top: 66px;
+  --logo-top: 52px;
   --logo-width: 360px;
   --headline-top: 186px;
   --board-y: 432px;
@@ -122,22 +122,36 @@ body { width: 1080px; height: 1920px; overflow: hidden; background: var(--blue-9
 .claim { position: absolute; top: var(--headline-top); left: 40px; right: 40px; text-align: center; color: var(--white); }
 .headline { font-weight: 900; font-size: 70px; line-height: 1.06; letter-spacing: -0.01em; }
 .headline-accent { color: var(--sky-900); }
-/* Pregunta: dos líneas un poco más abajo para dejar sitio a la línea de exámenes */
-.headline-ask { top: 238px; font-size: 72px; }
-/* Línea de exámenes: grande al aparecer, luego se reduce sobre la pregunta (script.js) */
-.exams-tag {
+/* Hook principal: grande al centro; script.js lo sube después como titular */
+.hook {
   position: absolute;
-  top: 258px;
+  top: 620px;
   left: 0;
   right: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   text-align: center;
   font-weight: 900;
-  font-size: 66px;
+  font-size: 124px;
+  line-height: 1.02;
+  letter-spacing: -0.01em;
+  color: var(--white);
+}
+.hook-line { display: block; }
+.hook-exams {
+  display: block;
+  margin-top: 36px;
+  padding: 14px 44px 16px;
+  border-radius: 999px;
+  background: var(--red-900);
+  box-shadow: 0 16px 34px rgba(2, 12, 28, 0.45);
+  font-weight: 800;
+  font-size: 46px;
   line-height: 1.1;
   letter-spacing: 0.06em;
-  color: var(--sky-900);
+  color: var(--white);
 }
-.dotsep { color: var(--white); }
 .claim { top: 214px; }
 .claim { font-weight: 900; font-size: 76px; line-height: 1.1; letter-spacing: -0.01em; }
 .headline-line,
