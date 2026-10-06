@@ -29,7 +29,7 @@ Si cambias `T.end`, cambia también `data-duration` en `#root`.
 | 0:07–0:08 | "escribiendo…" y "Sí. Ese es el error." |
 | 0:09–0:12 | "escribiendo…" y remate en globo azul oscuro: "No necesitas estudiar más. / Necesitas responder mejor." (anillo y pulso) |
 | 0:12,8–0:15 | Bloque rojo "EN ACI TE ENSEÑAMOS A RESPONDER / CON CRITERIO DE EXAMEN." sube desde abajo |
-| 0:14,8–0:16 | "IELTS · TOEFL · PTE" y "94% efectividad · Tutor personalizado." |
+| 0:14,8–0:16 | "IELTS · TOEFL · PTE · APTIS" y "94% efectividad · Tutor personalizado." |
 | 0:16,4–0:18 | CTA rojo con pulse y flecha |
 
 ## Exportar
