@@ -24,7 +24,7 @@ Si cambias `T.end`, cambia también `data-duration` en `#root`.
 | Tiempo | Momento |
 | --- | --- |
 | 0:00–0:01 | Luces del estadio con barrido y logo ACI; desde 0,35 s el hook principal grande al centro, línea por línea con impacto: "¿NECESITAS / SUBIR TU / PUNTAJE?" |
-| 0:01,75 | Cápsula roja "IELTS · TOEFL · PTE" debajo del hook |
+| 0:01,75 | Cápsula roja "IELTS · TOEFL · PTE · APTIS" debajo del hook |
 | 0:03,6 | El hook sube y queda como titular superior; entran el tablero LED y la franja fija 94% + garantía |
 | 0:05–0:12 | Contador 120 → 350 → 780 → 1.250 → +2.000 con destellos; tablero de resultados que se actualiza cada vez más rápido; cinta LED con nombres |
 | 0:12–0:13 | +2.000 estudiantes certificados y luego 94% de efectividad (clímax) |

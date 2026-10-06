@@ -147,9 +147,10 @@ body { width: 1080px; height: 1920px; overflow: hidden; background: var(--blue-9
   background: var(--red-900);
   box-shadow: 0 16px 34px rgba(2, 12, 28, 0.45);
   font-weight: 800;
-  font-size: 46px;
+  font-size: 42px;
   line-height: 1.1;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
   color: var(--white);
 }
 .claim { top: 214px; }
