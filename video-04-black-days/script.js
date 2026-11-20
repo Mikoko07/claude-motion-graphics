@@ -17,7 +17,7 @@
     legal: 19.9,               //      pie legal de la garantía
     wipe: 21.8,                // 0:22 cambio contundente a la oferta
     offer: 22.35,              //      BLACK DAYS / 15% / ... / fechas
-    cta: 27.0,                 // 0:27 logo + botón
+    cta: 27.0,                 // 0:27 botón
     end: 30.0,
   };
 
@@ -82,7 +82,7 @@
       tl.to("#pct", { scale: 1.06, duration: 0.2, yoyo: true, repeat: 1, ease: "sine.inOut" }, T.offer + 2.6);
 
       /* ---------------- 0:27-0:30 · Logo + CTA ---------------- */
-      tl.fromTo("#logo", { opacity: 0, y: -16 }, { opacity: 1, y: 0, duration: 0.5 }, T.cta);
+      // El logo queda fijo arriba a la derecha durante todo el video (sin animación).
       tl.fromTo("#cta", { opacity: 0, y: 60, scale: 0.9 }, { opacity: 1, y: 0, scale: 1, duration: 0.5, ease: "back.out(1.7)" }, T.cta + 0.2);
       [T.cta + 1.0, T.cta + 1.9].forEach((p) => {
         tl.to("#cta", { scale: 1.04, duration: 0.18, yoyo: true, repeat: 1, ease: "sine.inOut" }, p);
