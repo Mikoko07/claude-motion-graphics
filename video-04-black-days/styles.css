@@ -1,0 +1,257 @@
+/* ============================================================================
+   ACI · VIDEO 4 · BLACK DAYS · 1080x1920
+   Colores y medidas clave en :root (EDITAR aquí).
+   ============================================================================ */
+
+@font-face { font-family: "Montserrat"; src: url("assets/fonts/Montserrat-600.woff2") format("woff2"); font-weight: 600; font-style: normal; font-display: block; }
+@font-face { font-family: "Montserrat"; src: url("assets/fonts/Montserrat-700.woff2") format("woff2"); font-weight: 700; font-style: normal; font-display: block; }
+@font-face { font-family: "Montserrat"; src: url("assets/fonts/Montserrat-800.woff2") format("woff2"); font-weight: 800; font-style: normal; font-display: block; }
+@font-face { font-family: "Montserrat"; src: url("assets/fonts/Montserrat-900.woff2") format("woff2"); font-weight: 900; font-style: normal; font-display: block; }
+
+:root {
+  --blue-900: #0a396d;
+  --sky-900: #38d7fc;
+  --red-900: #c63030;
+  --white: #ffffff;
+  --gray-100: #e9eef4;
+  --navy-deep: #041c38;   /* Blue 900 oscurecido para la oferta */
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html,
+body { width: 1080px; height: 1920px; overflow: hidden; background: var(--navy-deep); }
+
+#root {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  font-family: "Montserrat", sans-serif;
+  color: var(--white);
+  -webkit-font-smoothing: antialiased;
+}
+.layer { position: absolute; inset: 0; }
+
+/* ============================ VIDEO ============================ */
+.vid { position: absolute; object-fit: cover; background: var(--navy-deep); }
+.full { left: 0; top: 0; width: 1080px; height: 1920px; }
+.col { top: 0; width: 360px; height: 1920px; }
+.col-1 { left: 0; }
+.col-2 { left: 360px; }
+.col-3 { left: 720px; }
+
+.scrim-bottom {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 1100px;
+  background: linear-gradient(180deg, rgba(4, 28, 56, 0) 0%, rgba(4, 28, 56, 0.55) 45%, rgba(4, 28, 56, 0.85) 100%);
+}
+.scrim-full { position: absolute; inset: 0; background: rgba(4, 28, 56, 0.55); opacity: 0; }
+.tri-lines { position: absolute; inset: 0; opacity: 0; }
+.tri-lines span { position: absolute; top: 0; width: 6px; height: 100%; background: var(--sky-900); }
+.tri-lines span:nth-child(1) { left: 357px; }
+.tri-lines span:nth-child(2) { left: 717px; }
+
+/* ============================ METAS ============================ */
+.req-chip {
+  position: absolute;
+  top: 1150px;
+  left: 50%;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 28px 14px 20px;
+  border-radius: 999px;
+  background: rgba(4, 28, 56, 0.75);
+  border: 3px solid var(--sky-900);
+  font-weight: 700;
+  font-size: 30px;
+  white-space: nowrap;
+  color: var(--white);
+  opacity: 0;
+}
+.req-chip svg { width: 34px; height: 34px; fill: none; stroke: var(--sky-900); stroke-width: 3.5; stroke-linecap: round; stroke-linejoin: round; }
+
+.goal {
+  position: absolute;
+  top: 1250px;
+  left: 50px;
+  right: 50px;
+  text-align: center;
+  font-weight: 900;
+  font-size: 112px;
+  line-height: 1.02;
+  letter-spacing: -0.01em;
+  color: var(--white);
+  text-shadow: 0 6px 30px rgba(4, 28, 56, 0.7);
+  opacity: 0;
+}
+.goal-long { font-size: 96px; }
+.goal-text { display: block; }
+.goal-bar { display: block; width: 220px; height: 12px; margin: 26px auto 0; border-radius: 6px; background: var(--sky-900); }
+
+/* ============================ PREGUNTA ============================ */
+.ask-card {
+  position: absolute;
+  top: 1180px;
+  left: 50px;
+  right: 50px;
+  padding: 40px 40px 44px;
+  border-radius: 36px;
+  background: rgba(4, 28, 56, 0.92);
+  border: 3px solid var(--sky-900);
+  box-shadow: 0 30px 60px rgba(2, 12, 28, 0.55);
+  text-align: center;
+  opacity: 0;
+}
+.ask-title { font-weight: 900; font-size: 74px; line-height: 1.06; color: var(--white); }
+.ask-exams { margin-top: 22px; font-weight: 800; font-size: 46px; letter-spacing: 0.05em; color: var(--sky-900); white-space: nowrap; }
+.ask-exams i { font-style: normal; color: var(--white); }
+
+/* ============================ FLUJO ============================ */
+.flow {
+  position: absolute;
+  top: 640px;
+  left: 0;
+  right: 0;
+  height: 600px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+.flow-line { position: absolute; left: calc(50% - 10px); top: 40px; width: 20px; height: 520px; overflow: visible; }
+.flow-line path { fill: none; stroke: var(--sky-900); stroke-width: 8; stroke-linecap: round; }
+.flow-node {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  height: 120px;
+  padding: 0 46px 0 20px;
+  border-radius: 999px;
+  background: var(--white);
+  color: var(--blue-900);
+  font-weight: 900;
+  font-size: 54px;
+  white-space: nowrap;
+  box-shadow: 0 20px 44px rgba(2, 12, 28, 0.5);
+  opacity: 0;
+}
+.flow-num {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 84px;
+  height: 84px;
+  border-radius: 50%;
+  background: var(--blue-900);
+  color: var(--sky-900);
+  font-size: 44px;
+}
+.flow-arrow {
+  position: relative;
+  width: 0;
+  height: 0;
+  border-left: 26px solid transparent;
+  border-right: 26px solid transparent;
+  border-top: 30px solid var(--sky-900);
+  opacity: 0;
+}
+.system {
+  position: absolute;
+  top: 1330px;
+  left: 60px;
+  right: 60px;
+  padding: 30px 30px 34px;
+  border-radius: 32px;
+  background: var(--red-900);
+  box-shadow: 0 24px 50px rgba(2, 12, 28, 0.5);
+  text-align: center;
+  opacity: 0;
+}
+.system-kicker { display: block; font-weight: 800; font-size: 32px; letter-spacing: 0.18em; color: var(--white); }
+.system-name { display: block; margin-top: 6px; font-weight: 900; font-size: 54px; line-height: 1.05; color: var(--white); white-space: nowrap; }
+
+/* ============================ BENEFICIOS ============================ */
+.benefits {
+  position: absolute;
+  top: 1110px;
+  left: 50px;
+  right: 50px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+.benefit {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  min-height: 132px;
+  padding: 18px 34px;
+  border-radius: 30px;
+  background: rgba(4, 28, 56, 0.9);
+  border: 3px solid var(--sky-900);
+  box-shadow: 0 20px 40px rgba(2, 12, 28, 0.45);
+  opacity: 0;
+}
+.benefit-red { background: var(--red-900); border-color: var(--red-900); }
+.ben-num { font-weight: 900; font-size: 84px; line-height: 1; color: var(--sky-900); }
+.ben-text { font-weight: 900; font-size: 44px; line-height: 1.1; color: var(--white); }
+.ben-icon { flex: 0 0 auto; width: 76px; height: 76px; overflow: visible; }
+.ben-icon .ic { fill: none; stroke: var(--white); stroke-width: 3.5; stroke-linecap: round; stroke-linejoin: round; }
+.ben-icon .fill-sky { fill: var(--sky-900); }
+.legal {
+  position: absolute;
+  top: 1600px;
+  left: 50px;
+  right: 50px;
+  text-align: center;
+  font-weight: 600;
+  font-size: 28px;
+  color: var(--gray-100);
+  text-shadow: 0 2px 10px rgba(4, 28, 56, 0.9);
+  opacity: 0;
+}
+
+/* ============================ OFERTA ============================ */
+.offer-bg { position: absolute; inset: 0; background: rgba(4, 28, 56, 0.86); opacity: 0; overflow: hidden; }
+.stripe { position: absolute; top: 1540px; height: 520px; transform: rotate(18deg); }
+.stripe-red { right: 120px; width: 46px; background: var(--red-900); }
+.stripe-sky { right: 190px; width: 14px; background: var(--sky-900); }
+.wipe { position: absolute; top: 0; left: 0; width: 1080px; height: 1920px; background: var(--red-900); opacity: 0; }
+
+.logo-slot { position: absolute; top: 96px; left: 0; right: 0; display: flex; justify-content: center; }
+.logo { display: block; width: 380px; height: auto; opacity: 0; }
+
+.offer { position: absolute; top: 300px; left: 40px; right: 40px; display: flex; flex-direction: column; align-items: center; text-align: center; }
+.offer > * { opacity: 0; }
+.bd { display: flex; align-items: center; gap: 24px; font-weight: 900; font-size: 104px; letter-spacing: 0.03em; line-height: 1; white-space: nowrap; }
+.bd-bar { display: block; width: 60px; height: 14px; border-radius: 7px; background: var(--red-900); }
+.pct { margin-top: 10px; font-weight: 900; font-size: 300px; line-height: 0.95; letter-spacing: -0.03em; color: var(--white); }
+.pct-label { margin-top: 6px; padding: 14px 44px 16px; border-radius: 999px; background: var(--red-900); font-weight: 900; font-size: 58px; line-height: 1.05; }
+.offer-sub { margin-top: 36px; max-width: 900px; font-weight: 800; font-size: 42px; line-height: 1.2; color: var(--white); }
+.dates { margin-top: 32px; padding: 14px 40px; border-radius: 999px; border: 4px solid var(--sky-900); font-weight: 900; font-size: 48px; color: var(--sky-900); white-space: nowrap; }
+
+/* ============================ CTA ============================ */
+.cta-slot { position: absolute; top: 1330px; left: 60px; right: 60px; height: 170px; }
+.cta {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 26px;
+  border-radius: 40px;
+  background: var(--red-900);
+  box-shadow: 0 24px 50px rgba(2, 12, 28, 0.55);
+  opacity: 0;
+}
+.cta-text { display: block; font-weight: 900; font-size: 46px; line-height: 1.12; text-align: center; }
+.cta-line { display: block; }
+.cta-arrow { display: block; flex: 0 0 auto; width: 56px; height: 38px; overflow: visible; }
+.cta-arrow path { fill: none; stroke: var(--white); stroke-width: 5; stroke-linecap: round; stroke-linejoin: round; }
+.cta-ring { position: absolute; inset: 0; border-radius: 40px; border: 5px solid var(--white); opacity: 0; }

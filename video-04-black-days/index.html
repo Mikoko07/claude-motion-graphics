@@ -1,0 +1,178 @@
+<!doctype html>
+<!--
+  ============================================================================
+  ALIANZA COLOMBO INGLESA · VIDEO 4 · BLACK DAYS
+  "Esa maestría. Ese trabajo. Ese proyecto de vivir afuera."
+  Reel vertical 1080x1920 · 30 s · material fuente + motion graphics (HyperFrames)
+
+  Archivos:
+    index.html  -> estructura y TEXTOS editables (busca los comentarios "EDITAR")
+    styles.css  -> marca, layout, colores (variables en :root)
+    script.js   -> línea de tiempo GSAP y TIEMPOS editables (objeto T)
+
+  Assets:
+    assets/video/fuente.mp4              -> material fuente (escenas recortadas con data-media-start)
+    assets/audio/mezcla.mp3              -> locución + música + efectos ya mezclados (ver README)
+    assets/logos/logo-aci-blanco.png     -> imagotipo blanco oficial
+    assets/fonts/Montserrat-*.woff2      -> Montserrat
+    vendor/gsap.min.js                   -> GSAP 3.14.2 local
+
+  Exportar:
+    npx hyperframes render --quality delivery --fps 30 --output export/aci-video-04-black-days.mp4
+  ============================================================================
+-->
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <title>ACI · Black Days</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script src="vendor/gsap.min.js"></script>
+  </head>
+  <body>
+    <div
+      id="root"
+      data-composition-id="aci-video-04"
+      data-start="0"
+      data-duration="30"
+      data-width="1080"
+      data-height="1920"
+    >
+      <!-- ==================== MATERIAL FUENTE (escenas) ==================== -->
+      <!-- 0:00-0:09 · maestría / trabajo / vivir afuera (el material ya trae los cortes en 2,9 s y 6,2 s) -->
+      <video id="v-intro" class="vid full" src="assets/video/fuente.mp4" muted playsinline
+        data-start="0" data-duration="9" data-media-start="0" data-volume="0" data-track-index="0"></video>
+
+      <!-- 0:09-0:12 · las tres historias unidas (tríptico) -->
+      <video id="v-tri-1" class="vid col col-1" src="assets/video/fuente.mp4" muted playsinline
+        data-start="9" data-duration="3" data-media-start="0.6" data-volume="0" data-track-index="1"></video>
+      <video id="v-tri-2" class="vid col col-2" src="assets/video/fuente.mp4" muted playsinline
+        data-start="9" data-duration="3" data-media-start="3.3" data-volume="0" data-track-index="2"></video>
+      <video id="v-tri-3" class="vid col col-3" src="assets/video/fuente.mp4" muted playsinline
+        data-start="9" data-duration="3" data-media-start="6.6" data-volume="0" data-track-index="3"></video>
+
+      <!-- 0:12-0:15 · preparación (cuaderno) -->
+      <video id="v-prep" class="vid full" src="assets/video/fuente.mp4" muted playsinline
+        data-start="12" data-duration="3" data-media-start="9.35" data-volume="0" data-track-index="0"></video>
+
+      <!-- 0:15-0:22 · clase online con docente y microgrupo -->
+      <video id="v-class" class="vid full" src="assets/video/fuente.mp4" muted playsinline
+        data-start="15" data-duration="7" data-media-start="12.42" data-volume="0" data-track-index="0"></video>
+
+      <!-- 0:22-0:30 · cierre (estudiante satisfecha) bajo la oferta -->
+      <video id="v-end" class="vid full" src="assets/video/fuente.mp4" muted playsinline
+        data-start="22" data-duration="8" data-media-start="19.5" data-volume="0" data-track-index="0"></video>
+
+      <!-- ==================== CAPAS GRÁFICAS ==================== -->
+      <div class="layer">
+        <div class="scrim-bottom"></div>
+        <div class="scrim-full" id="scrim-full"></div>
+        <!-- Separadores del tríptico -->
+        <div class="tri-lines" id="tri-lines"><span></span><span></span></div>
+      </div>
+
+      <div class="layer">
+        <!-- ---------- 0:00-0:09 · tres metas ---------- -->
+        <!-- EDITAR: destacado del requisito de inglés (genérico, sin instituciones) -->
+        <div class="req-chip" id="req-chip">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12 L10 17 L19 7" /></svg>
+          Requisito: certificado de inglés
+        </div>
+        <!-- EDITAR TEXTOS DE LAS TRES METAS -->
+        <h1 class="goal" id="goal-1"><span class="goal-text">ESA MAESTRÍA.</span><span class="goal-bar"></span></h1>
+        <h1 class="goal" id="goal-2"><span class="goal-text">ESE TRABAJO.</span><span class="goal-bar"></span></h1>
+        <h1 class="goal goal-long" id="goal-3"><span class="goal-text">ESE PROYECTO DE VIVIR AFUERA.</span><span class="goal-bar"></span></h1>
+
+        <!-- ---------- 0:09-0:12 · pregunta ---------- -->
+        <div class="ask-card" id="ask-card">
+          <!-- EDITAR -->
+          <p class="ask-title">¿QUÉ EXAMEN TE ACERCA A TU META?</p>
+          <p class="ask-exams">IELTS <i>·</i> TOEFL <i>·</i> PTE <i>·</i> MET</p>
+        </div>
+
+        <!-- ---------- 0:12-0:15 · flujo meta → examen → preparación ---------- -->
+        <div class="flow" id="flow">
+          <svg class="flow-line" viewBox="0 0 20 520" preserveAspectRatio="none" aria-hidden="true">
+            <path id="flow-path" d="M10 0 V520" />
+          </svg>
+          <!-- EDITAR -->
+          <div class="flow-node" id="node-1"><span class="flow-num">1</span>TU META</div>
+          <div class="flow-arrow" id="arrow-1"></div>
+          <div class="flow-node" id="node-2"><span class="flow-num">2</span>TU EXAMEN</div>
+          <div class="flow-arrow" id="arrow-2"></div>
+          <div class="flow-node" id="node-3"><span class="flow-num">3</span>TU PREPARACIÓN</div>
+        </div>
+        <div class="system" id="system">
+          <span class="system-kicker">SISTEMA DE</span>
+          <span class="system-name">INGENIERÍA DE PUNTAJE ACI</span>
+        </div>
+
+        <!-- ---------- 0:15-0:22 · beneficios ---------- -->
+        <div class="benefits" id="benefits">
+          <!-- EDITAR BENEFICIOS -->
+          <div class="benefit" id="ben-1">
+            <span class="ben-num">94%</span>
+            <span class="ben-text">DE EFECTIVIDAD</span>
+          </div>
+          <div class="benefit" id="ben-2">
+            <svg class="ben-icon" viewBox="0 0 64 64" aria-hidden="true">
+              <rect class="fill-sky" x="23" y="23" width="18" height="18" rx="5" />
+              <circle class="ic" cx="32" cy="11" r="6" /><circle class="ic" cx="53" cy="32" r="6" />
+              <circle class="ic" cx="32" cy="53" r="6" /><circle class="ic" cx="11" cy="32" r="6" />
+            </svg>
+            <span class="ben-text">MICROGRUPOS DE MÁXIMO 4 ESTUDIANTES</span>
+          </div>
+          <div class="benefit benefit-red" id="ben-3">
+            <svg class="ben-icon" viewBox="0 0 40 40" aria-hidden="true">
+              <path class="ic" d="M20 4 L34 9 V19 C34 28 28 34 20 37 C12 34 6 28 6 19 V9 Z" />
+              <path class="ic" d="M13 20 L18 25 L27 15" />
+            </svg>
+            <span class="ben-text">SI NO PASAS, REPITES GRATIS*</span>
+          </div>
+        </div>
+        <!-- EDITAR PIE LEGAL -->
+        <p class="legal" id="legal">*Aplican condiciones de la garantía.</p>
+
+        <!-- ---------- 0:22-0:30 · oferta Black Days ---------- -->
+        <div class="offer-bg" id="offer-bg" data-layout-allow-overflow>
+          <span class="stripe stripe-red" data-layout-allow-overflow></span><span class="stripe stripe-sky" data-layout-allow-overflow></span>
+        </div>
+        <div class="wipe" id="wipe"></div>
+
+        <!-- EDITAR LOGO -->
+        <div class="logo-slot"><img id="logo" class="logo" src="assets/logos/logo-aci-blanco.png" alt="Alianza Colombo Inglesa" /></div>
+
+        <div class="offer" id="offer">
+          <!-- EDITAR OFERTA -->
+          <p class="bd" id="bd"><span class="bd-bar"></span>BLACK DAYS<span class="bd-bar"></span></p>
+          <p class="pct" id="pct"><span id="pct-num">15</span>%</p>
+          <p class="pct-label" id="pct-label">DE DESCUENTO</p>
+          <p class="offer-sub" id="offer-sub">EN TU PREPARACIÓN PARA EXÁMENES INTERNACIONALES</p>
+          <p class="dates" id="dates">DEL 20 AL 27 DE NOVIEMBRE</p>
+        </div>
+
+        <!-- EDITAR CTA -->
+        <div class="cta-slot">
+          <div class="cta-ring" id="cta-ring"></div>
+          <div class="cta" id="cta">
+            <span class="cta-text"><span class="cta-line">SOLICITA TU DIAGNÓSTICO</span><span class="cta-line">ESTRATÉGICO GRATUITO</span></span>
+            <svg class="cta-arrow" id="cta-arrow" viewBox="0 0 48 32" aria-hidden="true"><path d="M4 16 H40 M28 5 L41 16 L28 27" /></svg>
+          </div>
+        </div>
+      </div>
+
+      <!-- ==================== AUDIO (locución + música + efectos, premezclado) ==================== -->
+      <!-- AUDIO_SLOT -->
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+      const tl = window.ACI4.build();
+      if (window.__timelines) {
+        window.__timelines["aci-video-04"] = tl;
+      } else {
+        window.ACI4.playStandalone(tl);
+      }
+    </script>
+  </body>
+</html>
