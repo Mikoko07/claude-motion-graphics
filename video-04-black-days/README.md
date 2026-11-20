@@ -10,7 +10,7 @@ con motion graphics de marca ACI, locución en español colombiano, música y ef
 | 0:00–0:03 | Persona frente al portátil (+ destacado "Requisito: certificado de inglés") | ESA MAESTRÍA. | "Esa maestría." |
 | 0:03–0:06 | Persona preparando entrevista con webcam | ESE TRABAJO. | "Ese trabajo." |
 | 0:06–0:09 | Fotos y notas de vivir afuera | ESE PROYECTO DE VIVIR AFUERA. | "Ese proyecto de vivir afuera." |
-| 0:09–0:12 | Tríptico con las tres historias | ¿QUÉ EXAMEN TE ACERCA A TU META? · IELTS · TOEFL · PTE · MET | "¿Qué examen te acerca a tu meta?" |
+| 0:09–0:12 | Tríptico con las tres historias | ¿QUÉ EXAMEN TE ACERCA A TU META? · IELTS · TOEFL · PTE · APTIS | "¿Qué examen te acerca a tu meta?" |
 | 0:12–0:15 | Cuaderno + línea gráfica | TU META → TU EXAMEN → TU PREPARACIÓN · SISTEMA DE INGENIERÍA DE PUNTAJE ACI | "Descúbrelo con Ingeniería de Puntaje ACI." |
 | 0:15–0:22 | Clase online con docente y microgrupo | 94% DE EFECTIVIDAD · MICROGRUPOS DE MÁXIMO 4 ESTUDIANTES · SI NO PASAS, REPITES GRATIS* + pie legal | "94% de efectividad. Microgrupos de máximo cuatro estudiantes. Y si no pasas, repites gratis." |
 | 0:22–0:27 | Barrido rojo → oferta | BLACK DAYS · 15% DE DESCUENTO · EN TU PREPARACIÓN PARA EXÁMENES INTERNACIONALES · DEL 20 AL 27 DE NOVIEMBRE | "Black Days: 15% de descuento en tu preparación, del 20 al 27 de noviembre." |
