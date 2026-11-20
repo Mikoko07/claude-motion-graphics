@@ -20,7 +20,7 @@ con motion graphics de marca ACI, locución en español colombiano, música y ef
 
 - Locución: voz colombiana (ElevenLabs vía Magnific), una frase por archivo en `assets/audio/raw/vo1..vo8.mp3`.
 - Música instrumental de 30 s (`raw/music.mp3`) que crece hacia el final; efectos `raw/sfx_*.mp3`.
-- `./mezclar_audio.sh` coloca cada frase a su tiempo, baja la música cuando habla la voz (ducking),
+- `./mezclar_audio.sh` recorta silencios, ajusta la velocidad de las frases largas (sin cambiar el tono) para que quepan en su espacio, coloca cada frase a su tiempo, baja la música cuando habla la voz (ducking),
   suma los efectos y genera `assets/audio/mezcla.mp3`. Los tiempos se editan al inicio del script.
 
 ## Editar y exportar

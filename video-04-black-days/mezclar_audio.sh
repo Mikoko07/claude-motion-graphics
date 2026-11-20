@@ -16,7 +16,9 @@ set -euo pipefail
 cd "$(dirname "$0")/assets/audio"
 R=raw
 
-VO_T=(0.20 3.05 6.35 9.20 12.20 15.25 22.45 27.20)   # inicio de cada frase de locución
+VO_T=(0.25 3.05 6.35 9.25 12.15 15.20 22.30 27.30)   # inicio de cada frase de locución
+VO_TRIM=(0.19 0 0 0.22 0 0 0 0)                      # silencio inicial a recortar de cada toma (s)
+VO_TEMPO=(1 1 1 1 1 1.05 1.12 1.07)                  # velocidad (sin cambiar el tono) para que cada frase quepa en su espacio
 WHOOSH_T=(2.88 6.18 8.95 11.95 14.95)                # transiciones
 REVEAL_T=21.75                                       # cambio a la oferta
 POP_T=27.15                                          # botón
@@ -33,7 +35,7 @@ f=""
 vo_labels=""
 for i in 0 1 2 3 4 5 6 7; do
   d=$(ms "${VO_T[$i]}")
-  f+="[$((i+1)):a]aresample=48000,aformat=channel_layouts=stereo,volume=1.6,adelay=${d}|${d}[vo$i];"
+  f+="[$((i+1)):a]atrim=start=${VO_TRIM[$i]},asetpts=PTS-STARTPTS,atempo=${VO_TEMPO[$i]},aresample=48000,aformat=channel_layouts=stereo,volume=1.6,adelay=${d}|${d}[vo$i];"
   vo_labels+="[vo$i]"
 done
 f+="${vo_labels}amix=inputs=8:normalize=0,apad=whole_dur=30[vo];[vo]asplit=2[vomix][vokey];"
